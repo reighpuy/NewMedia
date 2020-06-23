@@ -3,6 +3,7 @@ from bs4 import BeautifulSoup
 from googletrans import Translator
 from kbbi import KBBI
 from random import randint
+import asyncio
 import pytz 
 import time
 import timeit
