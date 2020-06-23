@@ -1,7 +1,7 @@
-### Thx to All HelloWorld Members!
+### Thx to HelloWorld!
 > Basics from HelloWorld
 
-[ ***Instruksi Penggunaan*** ]
+[ ***Usage Instruction*** ]
 
 > Run the Program :
 ```python
@@ -20,6 +20,6 @@ $ python3 client.py
  > pip freeze | grep (nama)
 
 # Last Updated / Terakhir Diperbarui : 
- > Pada : 3:13, 20 Mei 2020.
+ >  3:13, 20 Mei 2020.
   1. Media : Country Info.
   2. Media : Ip Check.
