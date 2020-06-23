@@ -21,7 +21,6 @@ $ python3 client.py
 
 # Last Updated / Terakhir Diperbarui : 
  >  13.01, 23 June 2020
-  1. All Requesting is now with Asyncio.
-  2. 3 Media Added.
-  3. Added RestartPoint.
-  4. 10 Media Added.
+  1. Added Asyncio.
+  2. Added RestartPoint.
+  3. 10 Media Added.
