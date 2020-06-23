@@ -20,6 +20,8 @@ $ python3 client.py
  > pip freeze | grep (nama)
 
 # Last Updated / Terakhir Diperbarui : 
- >  3:13, 20 Mei 2020.
-  1. Media : Country Info.
-  2. Media : Ip Check.
+ >  13.01, 23 June 2020
+  1. All Requesting is now with Asyncio.
+  2. 3 Media Added.
+  3. Added RestartPoint.
+  4. 10 Media Added.
