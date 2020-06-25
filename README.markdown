@@ -23,4 +23,5 @@ $ python3 client.py
  >  13.01, 23 June 2020
   1. Added Asyncio.
   2. Added RestartPoint.
-  3. 10 Media Added.
+  3. 9 Media Added.
+  4. Avatar / Display Picture Quick Edit.
