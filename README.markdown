@@ -7,7 +7,7 @@
 ```python
 $ git clone https://github.com/reighpuy/mantap/
 $ cd mantap
-$ python -m pip install -r materials.txt
+$ python -m pip install -r requirements.txt
 $ python3 client.py
 ```
 
