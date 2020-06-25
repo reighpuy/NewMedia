@@ -20,7 +20,7 @@ $ python3 client.py
  > pip freeze | grep (nama)
 
 # Last Updated / Terakhir Diperbarui : 
- >  13.01, 23 June 2020
+ >  11:30, 25 June 2020
   1. Added Asyncio.
   2. Added RestartPoint.
   3. 9 Media Added.
