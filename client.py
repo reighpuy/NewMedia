@@ -2,12 +2,11 @@ from important import *
 from module import *
 from setup_args import *
 from list_def import *
-import asyncio
 
 # Login Client
 listAppType = ['DESKTOPWIN', 'DESKTOPMAC', 'IOSIPAD', 'CHROMEOS']
 try:
-    print ('[ System Message ] - *Klien Masuk.')
+    #print ('[ System Message ] - *Klien Masuk.')
     client = None
     if args.apptype:
         tokenPath = Path('authToken.txt')
@@ -63,11 +62,11 @@ except Exception as error:
     sys.exit(1)
 
 if client:
-    print ('\n[ Your Auth Token ] -> %s' % client.authToken)
-    print ('\n[ Your Timeline Token ] -> %s' % client.tl.channelAccessToken)
-    print ('\n[ System Message ] - Berhasil Masuk.')
+    print ('\n[ Your Auth Token ] -> %s\n' % client.authToken)
+    #print ('\n[ Your Timeline Token ] -> %s' % client.tl.channelAccessToken)
+    #print (f'\n[ System Message ] - Success Login with Name.')
 else:
-    sys.exit('[ System Message ] - Gagal Masuk.')
+    sys.exit('[ System Message ] - Login Failed.')
 
 myMid = client.profile.mid
 admin = "uac8e3eaf1eb2a55770bf10c3b2357c33"
@@ -111,7 +110,6 @@ def helpmessage():
                     "│ " + key + "Apod" + "\n" + \
                     "│ " + key + "Catfacts" + "\n" + \
                     "│ " + key + "Countryinfo" + "\n" + \
-                    "│ " + key + "Harrypotter" + "\n" + \
                     "│ " + key + "Ipcheck" + "\n" + \
                     "│ " + key + "Kbbi" + "\n" + \
                     "│ " + key + "Meanslike" + "\n" + \
@@ -165,7 +163,7 @@ def executeCmd(msg, text, txt, cmd, msg_id, receiver, sender, to, setKey):
         restartProgram()
     
     # // Sends Bot Menu
-    if cmd == "menu":
+    if cmd == "menu" or cmd == "help":
             helpMessage = helpmessage()
             key = setKey.title()
             mids = "uac8e3eaf1eb2a55770bf10c3b2357c33"
@@ -181,7 +179,7 @@ def executeCmd(msg, text, txt, cmd, msg_id, receiver, sender, to, setKey):
             sendTemplate(to, mantap)
 
     # // Bot Send Profile Of Sender
-    if cmd == "me":
+    if cmd == "me" or cmd == "myprofile":
         paramz = client.getContact(sender)
         isi = "╭───「 Profile Info 」"
         isi += "\n│"
@@ -191,6 +189,95 @@ def executeCmd(msg, text, txt, cmd, msg_id, receiver, sender, to, setKey):
         isi += "\n│"
         isi += "\n╰────────────"
         client.sendReplyMessage(msg_id,to, isi)
+
+    # // Bot Send Avatar Of Sender
+    if cmd == "myava":
+        paramz = client.getContact(sender)
+        client.sendImageWithURL(to, f"http://dl.profile.line-cdn.net/{paramz.pictureStatus}")
+        print(f"http://dl.profile.line-cdn.net/{paramz.pictureStatus}")
+
+    # AVATAR / DISPLAY PICTURE EDITS
+    elif ("rotate " in msg.text):
+        key = eval(msg.contentMetadata["MENTION"])
+        target = key["MENTIONEES"][0]["M"]
+        contact = client.getContact(target)
+        client.sendImageWithURL(to, f"https://res.cloudinary.com/demo/image/fetch/w_200/a_-20/http://dl.profile.line-cdn.net/{contact.pictureStatus}")
+
+    elif ("circular " in msg.text):
+        key = eval(msg.contentMetadata["MENTION"])
+        target = key["MENTIONEES"][0]["M"]
+        contact = client.getContact(target)
+        client.sendImageWithURL(to, f"https://res.cloudinary.com/demo/image/fetch/w_200,c_fill,r_max/e_trim/http://dl.profile.line-cdn.net/{contact.pictureStatus}")
+
+    elif ("grayscale " in msg.text):
+        key = eval(msg.contentMetadata["MENTION"])
+        target = key["MENTIONEES"][0]["M"]
+        contact = client.getContact(target)
+        client.sendImageWithURL(to, f"https://res.cloudinary.com/demo/image/fetch/w_200,e_grayscale/http://dl.profile.line-cdn.net/{contact.pictureStatus}")
+
+    elif ("blur " in msg.text):
+        key = eval(msg.contentMetadata["MENTION"])
+        target = key["MENTIONEES"][0]["M"]
+        contact = client.getContact(target)
+        client.sendImageWithURL(to, f"https://res.cloudinary.com/demo/image/fetch/w_200,e_blur:100/http://dl.profile.line-cdn.net/{contact.pictureStatus}")
+
+    elif ("outline " in msg.text):
+        key = eval(msg.contentMetadata["MENTION"])
+        target = key["MENTIONEES"][0]["M"]
+        contact = client.getContact(target)
+        warna = ["co_red", "co_yellow", "co_orange", "co_green", "co_purple", "co_white"]
+        warna2 = ["co_red", "co_yellow", "co_orange", "co_green", "co_purple", "co_white"]
+        client.sendImageWithURL(to, f"https://res.cloudinary.com/demo/image/fetch/w_200,c_scale/e_outline:20:200,{random.choice(warna)}/e_outline:10:200,{random.choice(warna2)}/http://dl.profile.line-cdn.net/{contact.pictureStatus}")
+
+    elif ("shadow " in msg.text):
+        key = eval(msg.contentMetadata["MENTION"])
+        target = key["MENTIONEES"][0]["M"]
+        contact = client.getContact(target)
+        warna = ["000000", "FFFFFF", "800000", "808000", "008000", "800080", "008080", "000080"]
+        client.sendImageWithURL(to, f"https://res.cloudinary.com/demo/image/fetch/w_200,co_rgb:{random.choice(warna)},e_shadow:50,x_10,y_10/http://dl.profile.line-cdn.net/{contact.pictureStatus}")
+
+    elif ("adjust " in msg.text):
+        key = eval(msg.contentMetadata["MENTION"])
+        target = key["MENTIONEES"][0]["M"]
+        contact = client.getContact(target)
+        client.sendImageWithURL(to, f"https://res.cloudinary.com/demo/image/fetch/w_200,e_tint:equalize:80:red:50p:blue:60p:yellow:40p/http://dl.profile.line-cdn.net/{contact.pictureStatus}")
+
+    elif ("recolor " in msg.text):
+        key = eval(msg.contentMetadata["MENTION"])
+        target = key["MENTIONEES"][0]["M"]
+        contact = client.getContact(target)
+        warna = ["blue", "red", "green", "white", "black", "orange", "purple", "yellow"]
+        client.sendImageWithURL(to, f"https://res.cloudinary.com/demo/image/fetch/w_200,e_tint:equalize:80:red:50p:blue:60p:{random.choice(warna)}:40p/http://dl.profile.line-cdn.net/{contact.pictureStatus}")
+
+    elif ("decopacity " in msg.text):
+        key = eval(msg.contentMetadata["MENTION"])
+        target = key["MENTIONEES"][0]["M"]
+        contact = client.getContact(target)
+        client.sendImageWithURL(to, f"https://res.cloudinary.com/demo/image/fetch/w_200,e_oil_paint:4/http://dl.profile.line-cdn.net/{contact.pictureStatus}")
+
+    elif ("oilpaint " in msg.text):
+        key = eval(msg.contentMetadata["MENTION"])
+        target = key["MENTIONEES"][0]["M"]
+        contact = client.getContact(target)
+        client.sendImageWithURL(to, f"https://res.cloudinary.com/demo/image/fetch/w_200,e_oil_paint:4/http://dl.profile.line-cdn.net/{contact.pictureStatus}")
+
+    elif ("filter1 " in msg.text):
+        key = eval(msg.contentMetadata["MENTION"])
+        target = key["MENTIONEES"][0]["M"]
+        contact = client.getContact(target)
+        client.sendImageWithURL(to, f"https://res.cloudinary.com/demo/image/fetch/w_200,e_sepia/http://dl.profile.line-cdn.net/{contact.pictureStatus}")
+
+    elif ("filter2 " in msg.text):
+        key = eval(msg.contentMetadata["MENTION"])
+        target = key["MENTIONEES"][0]["M"]
+        contact = client.getContact(target)
+        client.sendImageWithURL(to, f"https://res.cloudinary.com/demo/image/fetch/w_200,e_simulate_colorblind/http://dl.profile.line-cdn.net/{contact.pictureStatus}")
+
+    elif ("filter3 " in msg.text):
+        key = eval(msg.contentMetadata["MENTION"])
+        target = key["MENTIONEES"][0]["M"]
+        contact = client.getContact(target)
+        client.sendImageWithURL(to, f"https://res.cloudinary.com/demo/image/fetch/w_200,e_hue/http://dl.profile.line-cdn.net/{contact.pictureStatus}")
 
                    # // MEDIA STARTING // #
 
@@ -238,7 +325,7 @@ def executeCmd(msg, text, txt, cmd, msg_id, receiver, sender, to, setKey):
         results += '\n│ • {key}Wikipedia Article (countrycode)'
         results += '\n│ • {key}Wikipedia Medialist (query)'
         results += '\n│ • {key}Wikipedia Related (query)'
-        results += '\n│ • {key}Wikipedia Randomsum'
+        results += '\n│ • {key}Wikipedia Randomsummary'
         results += '\n├'
         results += '\n╰───「 Reighpuy @HelloWorld 」'
         if cmd == 'wikipedia':
@@ -332,7 +419,7 @@ def executeCmd(msg, text, txt, cmd, msg_id, receiver, sender, to, setKey):
             results += "\n╰───[ Ended ]"
             client.sendReplyMessage(msg_id, to, results)
           except:client.sendReplyMessage(msg_id, to, f"# Failed, {textsl} Not Found.")
-        elif texttl.startswith('randomsum'):
+        elif texttl.startswith('randomsummary'):
           try:
             req = requests.get("https://id.wikipedia.org/api/rest_v1/page/random/summary")
             data = req.text
@@ -350,50 +437,6 @@ def executeCmd(msg, text, txt, cmd, msg_id, receiver, sender, to, setKey):
             client.sendReplyMessage(msg_id, to, results)
           except:client.sendReplyMessage(msg_id, to, "# Failed.")
 
-    # HARRYPOTTER
-    elif cmd.startswith('harrypotter'):
-        textt = removeCmd(text, setKey)
-        texttl = textt.lower()
-        param1 = sender
-        results = '╭───「 Harrypotter 」'
-        results += '\n├'
-        results += '\n├ Usage : '
-        results += '\n│ • {key}Harrypotter Profile (name)'
-        results += '\n│ • {key}Harrypotter Charlist'
-        results += '\n├'
-        results += '\n╰───「 Ended 」'
-        if cmd == 'harrypotter':
-            client.sendReplyMessage(msg_id, to, parsingRes(results).format_map(SafeDict(key=setKey.title())))
-        elif texttl.startswith("profile "):
-          try:
-            texts = textt[8:]
-            textsl = texts.lower()
-            req = requests.get(f"https://www.potterapi.com/v1/characters/?key=$2a$10$cO8xUVqBD2LPqRb6sF.Z1uGpDQ0Xv.L.quEnQh6USoxdyjP7v7g/e&name={str(textsl)}")
-            data = req.text
-            data = json.loads(data)
-            results = "╭──「 HarryPotter - Character 」"
-            results += "\n├ "
-            results += f"\n├ Name : {(str(data[0]['name']))}"
-            results += f"\n├ ID : {(str(data[0]['_id']))}"
-            results += f"\n├ House : {(str(data[0]['house']))}"
-            results += f"\n├ School : {(str(data[0]['school']))}"
-            results += f"\n├ Blood Status : {(str(data[0]['bloodStatus']))}"
-            results += f"\n├ Species : {(str(data[0]['species']))}"
-            results += "\n├"
-            results += "\n╰───「 Ended 」"
-            mantap={
-                'type': 'text',
-                'text': f'{str(results)}',
-                'sentBy': {
-                    'label': 'Harry Potter Characters',
-                    'iconUrl' : "https://2.bp.blogspot.com/-DlE53qq9NtA/VlKJORbZbfI/AAAAAAAAFl8/1Ypt2CW4iRQ/s1600/Harry%2BPotter%2Band%2Bsorcerer%2527s%2Bstone.jpg",
-                    'linkUrl' : 'http://line.me/ti/p/~yapuy'
-                }
-            }
-            sendTemplate(to, mantap)
-          except:client.sendReplyMessage(msg_id,to, f"Failed, {textsl} Not Found.")
-        elif texttl.startswith("charlist"):
-            client.sendReplyMessage(msg_id,to, "https://github.com/reighpuy/harry_potter_api/blob/master/characters.txt")
     # SUPERHERO
     elif cmd.startswith('superhero'):
       try:
@@ -729,7 +772,7 @@ def executeCmd(msg, text, txt, cmd, msg_id, receiver, sender, to, setKey):
             data = json.loads(data)
             if len(cond) == 1:
                 no = 0
-                result = "> {}".format(query.capitalize())
+                result = f"> {query.capitalize()}"
                 for anu in data["result"][0:10]:
                     no += 1
                     result += "\n   ({}). {} [{}]".format(str(no), anu["title"], anu["developer"])
@@ -844,10 +887,10 @@ def executeCmd(msg, text, txt, cmd, msg_id, receiver, sender, to, setKey):
         data = req.text
         data = json.loads(data)
         results = "╭──[ NASA ]"
-        results += f'\n├\n├ Title : {str(data["title"])}'
-        results += f'\n├ Media Type : {str(data["media_type"])}'
-        results += f'\n├ Date : {str(data["date"])}'
-        results += f'\n├ Description : {str(data["explanation"])}'
+        results += f'\n├\n├ Judul : {str(data["title"])}'
+        results += f'\n├ Media Tipe : {str(data["media_type"])}'
+        results += f'\n├ Tanggal : {str(data["date"])}'
+        results += f'\n├ Penjelasan : {str(data["explanation"])}'
         results += f'\n├\n╰──[ Reighpuy @HelloWorld ]'
         mantap={
             'type': 'text',
@@ -926,6 +969,44 @@ def executeCmd(msg, text, txt, cmd, msg_id, receiver, sender, to, setKey):
          data = json.loads(data)
          client.sendReplyMessage(msg_id,to, data["text"])
       except:client.sendReplyMessage(msg_id, to,"# Failed.")
+
+    # Trending Twitter
+    elif cmd.startswith("trendtwitter"):
+        try:
+            key = setKey.title()
+            sep = msg.text.split(" ")
+            query =  msg.text.replace(sep[0]+" ","")
+            cond = query.split("-")
+            #search = str(cond[0])
+            r = requests.get(f"https://api.haipbis.xyz/trendingtwitter/id")
+            data = r.text
+            data = json.loads(data)
+            if len(cond) == 1:
+                no = 0
+                result = "> Twitter Trending Hashtag in Indonesia"
+                for anu in data["result"]:
+                    no += 1
+                    result += "\n   ({}). {} [ {} ]".format(str(no), anu["title"], anu["count"])
+                result += f"\nFor Get the Link Using :\n\t`{key}{query}-[num]`"
+                client.sendReplyMessage(msg_id,to, result)
+            elif len(cond) == 2:
+                try:
+                    num = int(cond[1])
+                    if num <= len(data["result"]):
+                        search = data["result"][num - 1]
+                        result = f"Title : {search['title']}"
+                        result += f"\nTweet Count : {search['count']}"
+                        result += f"\nURL : {search['link']}"
+                        client.sendReplyMessage(msg_id,to, result)
+                except:client.sendReplyMessage(msg_id,to, "# Failed.")
+        except Exception as error:
+            print(error)
+
+    # MemeGen
+    elif cmd.startswith("meme"):
+        txt = msg.text.split("/")
+        image = ("http://memegen.link/"+txt[1].replace(" ","_")+"/"+txt[2].replace(" ","_")+"/"+txt[3].replace(" ","_")+".jpg?watermark=none")
+        client.sendImageWithURL(to, image)
 
                    # // MEDIA ENDED // #
 
@@ -1035,11 +1116,6 @@ def executeCmd(msg, text, txt, cmd, msg_id, receiver, sender, to, setKey):
     elif cmd == "info apod".lower():
         key = setKey.title()
         client.sendReplyMessage(msg_id, to, f"Usage : {key}Apod\n\tWhos can use this Command? : Admin & Non-Admin")
-
-    # Harrypotter
-    elif cmd == "info harrypotter".lower():
-        key = setKey.title()
-        client.sendReplyMessage(msg_id, to, f"Usage : {key}Harrypotter\n\tWhos can use this Command? : Admin & Non-Admin")
 
     # Ipcheck
     elif cmd == "info ipcheck".lower():
@@ -1205,7 +1281,7 @@ def executeOp(op):
         if talk_error.code in [7, 8, 20]:
             sys.exit(1)
     except KeyboardInterrupt:
-        sys.exit('Pesan SIstem : *KEYBOARD INTERRUPT.')
+        sys.exit('[ System Message ] : *KEYBOARD INTERRUPT.')
     except Exception as error:
         logError(error)
 
@@ -1225,7 +1301,7 @@ def runningProgram():
                 sys.exit(1)
             continue
         except KeyboardInterrupt:
-            sys.exit('Pesan SIstem : *KEYBOARD INTERRUPT.')
+            sys.exit('[ System Message ] : *KEYBOARD INTERRUPT.')
         except Exception as error:
             logError(error)
             continue
@@ -1235,5 +1311,5 @@ def runningProgram():
                 oepoll.setRevision(op.revision)
 
 if __name__ == '__main__':
-    print ('Pesan SIstem : *RUNNING THE PROGRAM.\n#################################')
+    print ('[ System Message ] : *PROGRAM HAS BEEN STARTED.\n#################################')
     runningProgram()
