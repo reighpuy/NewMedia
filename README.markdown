@@ -5,8 +5,8 @@
 
 > Run the Program :
 ```python
-$ git clone https://github.com/reighpuy/mantap/
-$ cd mantap
+$ git clone https://github.com/reighpuy/NewMedia/
+$ cd NewMedia
 $ python -m pip install -r requirements.txt
 $ python3 client.py
 ```
