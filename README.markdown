@@ -24,4 +24,4 @@ $ python3 client.py
   1. Added Asyncio.
   2. Added RestartPoint.
   3. 9 Media Added.
-  4. Avatar / Display Picture Quick Edit.
+  4. Avatar / Display Picture Quick Edit [Visit](https://github.com/reighpuy/NewMedia/blob/b0cdc0b6a2324f91d37b54c4773f63ed0e586903/client.py#L199)
