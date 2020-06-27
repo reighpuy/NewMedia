@@ -9,7 +9,7 @@ bool_dict = {
 }
 
 def restartProgram():
-    print ('Pesan Sistem: *Memulai Ulang Program.')
+    print ('[ System Message ] : *Restarting the Program\n______________________________.')
     python = sys.executable
     os.execl(python, python, *sys.argv)
 
@@ -20,12 +20,12 @@ def timeChange(secs):
     weeks, days = divmod(days,7)
     months, weeks = divmod(weeks,4)
     text = ""
-    if months != 0: text += "%02d Bulan" % (months)
-    if weeks != 0: text += " %02d Minggu" % (weeks)
-    if days != 0: text += " %02d Hari" % (days)
-    if hours !=  0: text +=  " %02d Jam" % (hours)
-    if mins != 0: text += " %02d Menit" % (mins)
-    if secs != 0: text += " %02d Detik" % (secs)
+    if months != 0: text += "%02d Month" % (months)
+    if weeks != 0: text += " %02d Week" % (weeks)
+    if days != 0: text += " %02d Day" % (days)
+    if hours !=  0: text +=  " %02d Hour" % (hours)
+    if mins != 0: text += " %02d Minute" % (mins)
+    if secs != 0: text += " %02d Second" % (secs)
     if text[0] == " ":
         text = text[1:]
     return text
@@ -97,15 +97,3 @@ def parsingRes(res):
             else:
                 result += '\n' + text
     return result
-
-def sendMention(to, mid, firstmessage='', lastmessage=''):
-    arrData = ""
-    text = "%s " %(str(firstmessage))
-    arr = []
-    mention = "@zeroxyuuki "
-    slen = str(len(text))
-    elen = str(len(text) + len(mention) - 1)
-    arrData = {'S':slen, 'E':elen, 'M':mid}
-    arr.append(arrData)
-    text += mention + str(lastmessage)
-    client.sendMessage(to, text, {'MENTION': str('{"MENTIONEES":' + json.dumps(arr) + '}')}, 0)
