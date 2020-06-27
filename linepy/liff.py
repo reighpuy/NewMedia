@@ -59,7 +59,7 @@ class Liff:
         return r.json()
 
     @loggedIn
-    def issueLiffView(self, to, liffId='1602289196-4xoE1JEr', revokeToken=False, isSquare=False):
+    def issueLiffView(self, to, liffId='1654177568-wL8RdxDk', revokeToken=False, isSquare=False):
         if self.liffBanned['status']:
             elapsed = time.time() - self.liffBanned['time']
             if elapsed >= 86400:
