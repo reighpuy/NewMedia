@@ -6,7 +6,7 @@ from list_def import *
 # Login Client
 listAppType = ['DESKTOPWIN', 'DESKTOPMAC', 'IOSIPAD', 'CHROMEOS']
 try:
-    #print ('[ System Message ] - *Klien Masuk.')
+    #print ('[ System Message ] - *Logedin.')
     client = None
     if args.apptype:
         tokenPath = Path('authToken.txt')
@@ -69,7 +69,7 @@ else:
     sys.exit('[ System Message ] - Login Failed.')
 
 myMid = client.profile.mid
-admin = "uac8e3eaf1eb2a55770bf10c3b2357c33"
+admin = ["uac8e3eaf1eb2a55770bf10c3b2357c33"] # Insert your Mid
 programStart = time.time()
 oepoll = OEPoll(client)
 tmp_text = []
@@ -110,6 +110,7 @@ def helpmessage():
                     "│ " + key + "Apod" + "\n" + \
                     "│ " + key + "Catfacts" + "\n" + \
                     "│ " + key + "Countryinfo" + "\n" + \
+                    "│ " + key + "Harrypotter" + "\n" + \
                     "│ " + key + "Ipcheck" + "\n" + \
                     "│ " + key + "Kbbi" + "\n" + \
                     "│ " + key + "Meanslike" + "\n" + \
@@ -133,7 +134,7 @@ def executeCmd(msg, text, txt, cmd, msg_id, receiver, sender, to, setKey):
     if cmd == '@logout device':
       if sender in admin:
         client.sendReplyMessage(msg_id, to, f'Program has been Stopped!\nStopped by {sender.displayName}')
-        sys.exit('##----- PROGRAM STOPPED -----##')
+        sys.exit('__Program has been Stopped__')
 
     # // Bot Send His Creator Contact
     if cmd == "author":
@@ -169,7 +170,7 @@ def executeCmd(msg, text, txt, cmd, msg_id, receiver, sender, to, setKey):
             mids = "uac8e3eaf1eb2a55770bf10c3b2357c33"
             mantap={
                 'type': 'text',
-                'text': f'  {str(helpMessage)}\nFor Info Using : \n\t{key}info [commands]',
+                'text': f'  {str(helpMessage)}\nFor Info Using : \n\t{key}info [commands]\n\tEx : {key}info antonym',
                 'sentBy': {
                     'label': 'Reighpuy',
                     'iconUrl' : "https://pbs.twimg.com/profile_images/1164752786992484354/PyFcqmzG_400x400.jpg",
@@ -437,6 +438,50 @@ def executeCmd(msg, text, txt, cmd, msg_id, receiver, sender, to, setKey):
             client.sendReplyMessage(msg_id, to, results)
           except:client.sendReplyMessage(msg_id, to, "# Failed.")
 
+    # HARRYPOTTER
+    elif cmd.startswith('harrypotter'):
+        textt = removeCmd(text, setKey)
+        texttl = textt.lower()
+        param1 = sender
+        results = '╭───「 Harrypotter 」'
+        results += '\n├'
+        results += '\n├ Usage : '
+        results += '\n│ • {key}Harrypotter Profile (name)'
+        results += '\n│ • {key}Harrypotter Charlist'
+        results += '\n├'
+        results += '\n╰───「 Ended 」'
+        if cmd == 'harrypotter':
+            client.sendReplyMessage(msg_id, to, parsingRes(results).format_map(SafeDict(key=setKey.title())))
+        elif texttl.startswith("profile "):
+          try:
+            texts = textt[8:]
+            textsl = texts.lower()
+            req = requests.get(f"https://www.potterapi.com/v1/characters/?key=$2a$10$cO8xUVqBD2LPqRb6sF.Z1uGpDQ0Xv.L.quEnQh6USoxdyjP7v7g/e&name={str(textsl)}")
+            data = req.text
+            data = json.loads(data)
+            results = "╭──「 HarryPotter - Character 」"
+            results += "\n├ "
+            results += f"\n├ Name : {(str(data[0]['name']))}"
+            results += f"\n├ ID : {(str(data[0]['_id']))}"
+            results += f"\n├ House : {(str(data[0]['house']))}"
+            results += f"\n├ School : {(str(data[0]['school']))}"
+            results += f"\n├ Blood Status : {(str(data[0]['bloodStatus']))}"
+            results += f"\n├ Species : {(str(data[0]['species']))}"
+            results += "\n├"
+            results += "\n╰───「 Ended 」"
+            mantap={
+                'type': 'text',
+                'text': f'{str(results)}',
+                'sentBy': {
+                    'label': 'Harry Potter Characters',
+                    'iconUrl' : "https://2.bp.blogspot.com/-DlE53qq9NtA/VlKJORbZbfI/AAAAAAAAFl8/1Ypt2CW4iRQ/s1600/Harry%2BPotter%2Band%2Bsorcerer%2527s%2Bstone.jpg",
+                    'linkUrl' : 'http://line.me/ti/p/~yapuy'
+                }
+            }
+            sendTemplate(to, mantap)
+          except:client.sendReplyMessage(msg_id,to, f"Failed, {textsl} Not Found.")
+        elif texttl.startswith("charlist"):
+            client.sendReplyMessage(msg_id,to, "https://github.com/reighpuy/harry_potter_api/blob/master/characters.txt")
     # SUPERHERO
     elif cmd.startswith('superhero'):
       try:
@@ -1117,6 +1162,11 @@ def executeCmd(msg, text, txt, cmd, msg_id, receiver, sender, to, setKey):
         key = setKey.title()
         client.sendReplyMessage(msg_id, to, f"Usage : {key}Apod\n\tWhos can use this Command? : Admin & Non-Admin")
 
+    # Harrypotter
+    elif cmd == "info harrypotter".lower():
+        key = setKey.title()
+        client.sendReplyMessage(msg_id, to, f"Usage : {key}Harrypotter\n\tWhos can use this Command? : Admin & Non-Admin")
+
     # Ipcheck
     elif cmd == "info ipcheck".lower():
         key = setKey.title()
@@ -1311,5 +1361,5 @@ def runningProgram():
                 oepoll.setRevision(op.revision)
 
 if __name__ == '__main__':
-    print ('[ System Message ] : *PROGRAM HAS BEEN STARTED.\n#################################')
+    print ('[ System Message ] : *PROGRAM HAS BEEN STARTED.\n______________________________')
     runningProgram()
