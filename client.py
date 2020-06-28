@@ -102,8 +102,9 @@ def helpmessage():
         key = ''
     helpMessage ="> General" + "\n" + \
                     "Prefix : ( " + key + " )\n\t" + \
-                    " (1). Me" + "\n\t" + \
-                    " (2). Author" + "\n\n" + \
+                    " (1). Author" + "\n\n" + \
+                    " (2). LiffLink" + "\n\n" + \
+                    " (3). Me" + "\n\t" + \
                     "> Media" + "\n\t" + \
                     " (1). Dictionary" + "\n\t" + \
                     " (2). Utility"
@@ -159,9 +160,13 @@ def executeCmd(msg, text, txt, cmd, msg_id, receiver, sender, to, setKey):
         client.sendReplyMessage(msg_id, to, f'Program has been Stopped!\nStopped by {sender.displayName}')
         sys.exit('__Program has been Stopped__')
 
-    # // Bot Send His Creator Contact
+    # // Bot Send a Creator Contact
     if cmd == "author":
         client.sendContact(to,"uac8e3eaf1eb2a55770bf10c3b2357c33")
+
+    # // Bot 
+    if cmd == "lifflink".lower():
+        client.sendReplyMessage(msg_id,to, "https://liff.line.me/1654177568-wL8RdxDk")
 
     # // Checking Speed of Bot Send an Message
     elif cmd == 'ping':
@@ -935,7 +940,7 @@ def executeCmd(msg, text, txt, cmd, msg_id, receiver, sender, to, setKey):
                     num = int(cond[1])
                     if num <= len(data["result"]):
                         search = data["result"][num - 1]
-                        result = f"[ Title : {search['title']}"
+                        result = f"Title : {search['title']}"
                         result += f"\n\tDescription : {search['desc']}"
                         result += f"\n\tURL : {search['url']}"
                         client.sendImageWithURL(to, f"{search['image']}")
@@ -958,7 +963,7 @@ def executeCmd(msg, text, txt, cmd, msg_id, receiver, sender, to, setKey):
             for reighpuy in data["result"][0:10]:
                 no += 1
                 result += "\n   ({}). {} \n\t  URL -> [{}]".format(str(no), reighpuy["title"], reighpuy["url"])
-            result += f"\nFor Info Using :\n\t`{key}Searchmusic {query}-[num]`"
+            result += f"\nFor Info Using :\n\t`{key}Ytsearch {query}-[num]`"
             client.sendReplyMessage(msg_id,to, result)
         except Exception as error:
             print(error)
@@ -1112,9 +1117,9 @@ def executeCmd(msg, text, txt, cmd, msg_id, receiver, sender, to, setKey):
                     num = int(cond[1])
                     if num <= len(data["result"]):
                         search = data["result"][num - 1]
-                        result = f"[ Title ]: {search['title']}"
-                        result += f"\n[ Tweet Count ]: {search['count']}"
-                        result += f"\n[ URL ]: {search['link']}"
+                        result = f"Title : {search['title']}"
+                        result += f"\nTweet Count : {search['count']}"
+                        result += f"\nURL : {search['link']}"
                         client.sendReplyMessage(msg_id,to, result)
                 except:client.sendReplyMessage(msg_id,to, "# Failed.")
         except Exception as error:
