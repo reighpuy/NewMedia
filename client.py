@@ -100,33 +100,57 @@ def helpmessage():
         key = settings['setKey']['key'].title()
     else:
         key = ''
-    helpMessage ="╭─「 Umum 」─── " + "\n" + \
-                    "│ Prefix : " + key + "\n" + \
-                    "│ " + key + "Me" + "\n" + \
-                    "│ " + key + "Author" + "\n" + \
-                    "╰────────────" + "\n" + \
-                    "╭─「 Media 」─" + "\n" + \
-                    "│ " + key + "Antonym" + "\n" + \
-                    "│ " + key + "Apod" + "\n" + \
-                    "│ " + key + "Catfacts" + "\n" + \
-                    "│ " + key + "Countryinfo" + "\n" + \
-                    "│ " + key + "Harrypotter" + "\n" + \
-                    "│ " + key + "Ipcheck" + "\n" + \
-                    "│ " + key + "Kbbi" + "\n" + \
-                    "│ " + key + "Meanslike" + "\n" + \
-                    "│ " + key + "Number" + "\n" + \
-                    "│ " + key + "Playstore" + "\n" + \
-                    "│ " + key + "RandomDate" + "\n" + \
-                    "│ " + key + "RandomQuote" + "\n" + \
-                    "│ " + key + "RandomYear" + "\n" + \
-                    "│ " + key + "Superhero" + "\n" + \
-                    "│ " + key + "Surah" + "\n" + \
-                    "│ " + key + "Tvchannel" + "\n" + \
-                    "│ " + key + "Urbandict" + "\n" + \
-                    "│ " + key + "Wikipedia" + "\n" + \
-                    "│ " + key + "Ytsearch" + "\n" + \
-                    "╰────────────"
+    helpMessage ="- General -" + "\n" + \
+                    "Prefix : ( " + key + " )\n\t" + \
+                    " (1). Me" + "\n\t" + \
+                    " (2). Author" + "\n\n" + \
+                    "- Media -" + "\n\t" + \
+                    " (1). Dictionary" + "\n\t" + \
+                    " (2). Utility"
     return helpMessage
+
+def helpdictionary():
+    if settings['setKey']['status'] == True:
+        key = settings['setKey']['key'].title()
+    else:
+        key = ''
+    helpDictionary ="- Dictionary Command List -" + "\n" + \
+                    "Prefix : ( " + key + " )\n\t" + \
+                    " (1). Antonym" + "\n\t" + \
+                    " (2). Kbbi" + "\n\t" + \
+                    " (3). Kindof" + "\n\t" + \
+                    " (4). Meanslike" + "\n\t" + \
+                    " (5). Popularnouns" + "\n\t" + \
+                    " (6). Popularadjective" + "\n\t" + \
+                    " (7). Synonym" + "\n\t" + \
+                    " (8). Urbandict" + "\n\t" + \
+                    " (9). Wikipedia"
+    return helpDictionary
+
+def helputility():
+    if settings['setKey']['status'] == True:
+        key = settings['setKey']['key'].title()
+    else:
+        key = ''
+    helpUtility ="- Utility Command Lists -" + "\n" + \
+                    "Prefix : ( " + key + " )\n\t" + \
+                    " (1). Apod" + "\n\t" + \
+                    " (2). Catimage" + "\n\t" + \
+                    " (3). Catfacts" + "\n\t" + \
+                    " (4). Countryinfo" + "\n\t" + \
+                    " (5). Dogimage" + "\n\t" + \
+                    " (6). Foximage" + "\n\t" + \
+                    " (7). Ipcheck" + "\n\t" + \
+                    " (8). Number" + "\n\t" + \
+                    " (9). Playstore" + "\n\t" + \
+                    " (10). RandomDate" + "\n\t" + \
+                    " (11). RandomQuote" + "\n\t" + \
+                    " (12). RandomYear" + "\n\t" + \
+                    " (13). Superhero" + "\n\t" + \
+                    " (14). Surah" + "\n\t" + \
+                    " (15). Tvchannel" + "\n\t" + \
+                    " (16). Ytsearch"
+    return helpUtility
 
 def executeCmd(msg, text, txt, cmd, msg_id, receiver, sender, to, setKey):
 
@@ -163,21 +187,26 @@ def executeCmd(msg, text, txt, cmd, msg_id, receiver, sender, to, setKey):
         settings['restartPoint'] = to
         restartProgram()
     
-    # // Sends Bot Menu
+    # # // Sends Bot Menu
+    # if cmd == "menu" or cmd == "help":
+    #         helpMessage = helpmessage()
+    #         key = setKey.title()
+    #         mids = "uac8e3eaf1eb2a55770bf10c3b2357c33"
+    #         mantap={
+    #             'type': 'text',
+    #             'text': f'  {str(helpMessage)}\nUsage : \n\t{key}detail [commands]\n\tEx : {key}detail dictionary',
+    #             'sentBy': {
+    #                 'label': 'Reighpuy',
+    #                 'iconUrl' : "https://pbs.twimg.com/profile_images/1164752786992484354/PyFcqmzG_400x400.jpg",
+    #                 'linkUrl' : 'https://line.me/ti/p/~yapuy'
+    #             }
+    #         }
+    #         sendTemplate(to, mantap)
+
     if cmd == "menu" or cmd == "help":
-            helpMessage = helpmessage()
-            key = setKey.title()
-            mids = "uac8e3eaf1eb2a55770bf10c3b2357c33"
-            mantap={
-                'type': 'text',
-                'text': f'  {str(helpMessage)}\nFor Info Using : \n\t{key}info [commands]\n\tEx : {key}info antonym',
-                'sentBy': {
-                    'label': 'Reighpuy',
-                    'iconUrl' : "https://pbs.twimg.com/profile_images/1164752786992484354/PyFcqmzG_400x400.jpg",
-                    'linkUrl' : 'https://line.me/ti/p/~yapuy'
-                }
-            }
-            sendTemplate(to, mantap)
+        helpMessage = helpmessage()
+        key = setKey.title()
+        client.sendReplyMessage(msg_id, to, f'  {str(helpMessage)}\nUsage : \n\t{key}detail [commands]\n\tEx : {key}detail dictionary')
 
     # // Bot Send Profile Of Sender
     if cmd == "me" or cmd == "myprofile":
@@ -196,6 +225,8 @@ def executeCmd(msg, text, txt, cmd, msg_id, receiver, sender, to, setKey):
         paramz = client.getContact(sender)
         client.sendImageWithURL(to, f"http://dl.profile.line-cdn.net/{paramz.pictureStatus}")
         print(f"http://dl.profile.line-cdn.net/{paramz.pictureStatus}")
+
+                   # // MEDIA STARTING // #
 
     # AVATAR / DISPLAY PICTURE EDITS
     elif ("rotate " in msg.text):
@@ -280,17 +311,122 @@ def executeCmd(msg, text, txt, cmd, msg_id, receiver, sender, to, setKey):
         contact = client.getContact(target)
         client.sendImageWithURL(to, f"https://res.cloudinary.com/demo/image/fetch/w_200,e_hue/http://dl.profile.line-cdn.net/{contact.pictureStatus}")
 
-                   # // MEDIA STARTING // #
+            ######## DICTIONARY MENUS ########
+    # Urban dict
+    elif cmd.startswith("urbandict "):
+      try:
+          process = msg.text.split(" ")
+          ordered = msg.text.replace(process[0] + " ","")
+          r = requests.get("http://urbanscraper.herokuapp.com/search/{}".format(str(ordered)))
+          data = r.text
+          data = json.loads(data)
+          results = f" > Urbandictionary `{ordered.capitalize()}`"
+          results += f"\n\tTerm : {str(data[0]['term'])}"
+          results += f"\n\tDefinition : {str(data[0]['definition'])}"
+          results += f"\n\tSample : {str(data[0]['example'])}"
+          results += f"\n\tURL : {str(data[0]['url'])}"
+          client.sendReplyMessage(msg_id,to, results)
+      except:
+          client.sendReplyMessage(msg_id, to,"# Failed : {} Not Found.".format(ordered))
+
+    # ANTONYM
+    elif cmd.startswith("antonym "):
+        try:
+            process = msg.text.split(" ")
+            ordered = msg.text.replace(process[0] + " ","")
+            cond = ordered.split("-")
+            r = requests.get("https://api.datamuse.com/words?rel_ant={}".format(str(ordered)))
+            data = r.text
+            data = json.loads(data)
+            if len(cond) == 1:
+                no = 0
+                result = f"> Antonym of `{ordered.capitalize()}` :"
+                for reighpuy in data:
+                    no += 1
+                    result += f'\n   ({str(no)}). {reighpuy["word"]} [{reighpuy["score"]}]'
+                client.sendReplyMessage(msg_id,to, result+"\n\nNote :\n\tThe Number is a Point of Antonym.")
+        except Exception as error:client.sendReplyMessage(msg_id, to, f"# Failed : {ordered} Not Found.\n\tError : {error}")
+
+    # SYNONYM
+    elif cmd.startswith("synonym "):
+        try:
+            process = msg.text.split(" ")
+            ordered = msg.text.replace(process[0] + " ","")
+            cond = ordered.split("-")
+            r = requests.get("https://api.datamuse.com/words?rel_syn={}".format(str(ordered)))
+            data = r.text
+            data = json.loads(data)
+            if len(cond) == 1:
+                no = 0
+                result = f"> Synonym of `{ordered.capitalize()}` :"
+                for reighpuy in data:
+                    no += 1
+                    result += f'\n   ({str(no)}). {reighpuy["word"]} [{reighpuy["score"]}]'
+                client.sendReplyMessage(msg_id,to, result+"\n\nNote :\n\tThe Number is a Point of Synonym.")
+        except Exception as error:client.sendReplyMessage(msg_id, to, f"# Failed : {ordered} Not Found.\n\tError : {error}")
+
+    # KINDOF
+    elif cmd.startswith("kindof "):
+        try:
+            process = msg.text.split(" ")
+            ordered = msg.text.replace(process[0] + " ","")
+            cond = ordered.split("-")
+            r = requests.get("https://api.datamuse.com/words?rel_spc={}".format(str(ordered)))
+            data = r.text
+            data = json.loads(data)
+            if len(cond) == 1:
+                no = 0
+                result = f"> Kind of `{ordered.capitalize()}` :"
+                for reighpuy in data:
+                    no += 1
+                    result += f'\n   ({str(no)}). {reighpuy["word"]} [{reighpuy["score"]}]'
+                client.sendReplyMessage(msg_id,to, result+"\n\nNote :\n\tThe Number is a Point of Kindof.")
+        except Exception as error:client.sendReplyMessage(msg_id, to, f"# Failed : {ordered} Not Found.\n\tError : {error}")
+
+    # POPULAR NOUNS
+    elif cmd.startswith("popularnouns "):
+        try:
+            process = msg.text.split(" ")
+            ordered = msg.text.replace(process[0] + " ","")
+            cond = ordered.split("-")
+            r = requests.get("https://api.datamuse.com/words?rel_jja={}".format(str(ordered)))
+            data = r.text
+            data = json.loads(data)
+            if len(cond) == 1:
+                no = 0
+                result = f"> Kind of `{ordered.capitalize()}` :"
+                for reighpuy in data:
+                    no += 1
+                    result += f'\n   ({str(no)}). {reighpuy["word"]} [{reighpuy["score"]}]'
+                client.sendReplyMessage(msg_id,to, result+"\n\nNote :\n\tThe Number is a Point of Popular Nouns.")
+        except Exception as error:client.sendReplyMessage(msg_id, to, f"# Failed : {ordered} Not Found.\n\tError : {error}")
+
+    # POPULAR ADJECTIVE
+    elif cmd.startswith("populadjective "):
+        try:
+            process = msg.text.split(" ")
+            ordered = msg.text.replace(process[0] + " ","")
+            cond = ordered.split("-")
+            r = requests.get("https://api.datamuse.com/words?rel_jjb={}".format(str(ordered)))
+            data = r.text
+            data = json.loads(data)
+            if len(cond) == 1:
+                no = 0
+                result = f"> Kind of `{ordered.capitalize()}` :"
+                for reighpuy in data:
+                    no += 1
+                    result += f'\n   ({str(no)}). {reighpuy["word"]} [{reighpuy["score"]}]'
+                client.sendReplyMessage(msg_id,to, result+"\n\nNote :\n\tThe Number is a Point of Popular Adjective.")
+        except Exception as error:client.sendReplyMessage(msg_id, to, f"# Failed : {ordered} Not Found.\n\tError : {error}")
 
     # KBBI
     elif cmd.startswith("kbbi "):
       try:
         title = removeCmd(text)
         data = KBBI(title)
-        result = "╭──[ KBBI ]"
-        result += f"\n├ Title : {str(title)}"
-        result += "\n╰──────────"
-        result += f"\n\n-> Result : \n{str(data.__str__(contoh=False))}"
+        result = " > KBBI"
+        result += f"\n\tJudul : `{str(title).capitalize()}`"
+        result += f"\n{str(data.__str__(contoh=False))}"
         client.sendReplyMessage(msg_id, to, str(result))
       except Exception as error:
           client.sendReplyMessage(msg_id, to, "# Failed, {} Not Found.".format(judul))
@@ -304,11 +440,12 @@ def executeCmd(msg, text, txt, cmd, msg_id, receiver, sender, to, setKey):
          req = requests.get(f"https://api.datamuse.com/words?ml={str(ordered)}")
          data = req.text
          data = json.loads(data)
-         results = f"1) : {str(data[0]['word'])}"
-         results += f"\n2) : {str(data[1]['word'])}"
-         results += f"\n3) : {str(data[2]['word'])}"
-         results += f"\n4) : {str(data[3]['word'])}"
-         results += f"\n5) : {str(data[4]['word'])}"
+         results = f" > Meanslike {ordered}"
+         results += f"\n\t1) : {str(data[0]['word'])}"
+         results += f"\n\t2) : {str(data[1]['word'])}"
+         results += f"\n\t3) : {str(data[2]['word'])}"
+         results += f"\n\t4) : {str(data[3]['word'])}"
+         results += f"\n\t5) : {str(data[4]['word'])}"
          client.sendReplyMessage(msg_id, to, str(results))
       except:client.sendReplyMessage(msg_id, to, f"# Failed : {ordered} Not Found.")
 
@@ -318,55 +455,35 @@ def executeCmd(msg, text, txt, cmd, msg_id, receiver, sender, to, setKey):
         texttl = textt.lower()
         param1 = sender
         client.findAndAddContactsByMid(param1)
-        results = '╭───「 Wikipedia 」'
-        results += '\n├'
-        results += '\n├ Language : ID'
-        results += '\n├ Usage : '
-        results += '\n│ • {key}Wikipedia Summary (query)'
-        results += '\n│ • {key}Wikipedia Article (countrycode)'
-        results += '\n│ • {key}Wikipedia Medialist (query)'
-        results += '\n│ • {key}Wikipedia Related (query)'
-        results += '\n│ • {key}Wikipedia Randomsummary'
-        results += '\n├'
-        results += '\n╰───「 Reighpuy @HelloWorld 」'
+        results = ' > Wikipedia'
+        results += '\nLanguage : ID'
+        results += '\n\nUsage : '
+        results += '\n\t{key}Wikipedia Summary (Query)'
+        results += '\n\t{key}Wikipedia Article (Country_Code)'
+        results += '\n\t{key}Wikipedia Medialist (Query)'
+        results += '\n\t{key}Wikipedia Related (Query)'
+        results += '\n\t{key}Wikipedia Randomsummary'
         if cmd == 'wikipedia':
-            client.sendReplyMessage(msg_id, to, parsingRes(results).format_map(SafeDict(key=setKey.title())))
-        elif texttl.startswith('article '):
+            client.sendReplyMessage(msg_id, to, results.format_map(SafeDict(key=setKey.title())))
+        elif texttl.startswith('article '): # With Country Code | Example : !wikipedia article id
           try:
             texts = textt[8:]
             textsl = texts.lower()
-            req = requests.get(f"https://id.wikipedia.org/api/rest_v1/data/recommendation/article/creation/translation/{str(textsl)}")
+            key = setKey.title()
+            sep = textsl.split(" ")
+            query =  textsl.replace(sep[0]+" ","")
+            cond = query.split("-")
+            search = str(cond[0])
+            req = requests.get(f"https://id.wikipedia.org/api/rest_v1/data/recommendation/article/creation/translation/{str(search)}")
             data = req.text
             data = json.loads(data)
-            results = "╭───[ Wikipedia Lang Article ]"
-            results += "\n├"
-            results += f"\n├ 1) {str(data['items'][0]['title'])}"
-            results += f"\n├ 2) {str(data['items'][1]['title'])}"
-            results += f"\n├ 3) {str(data['items'][2]['title'])}"
-            results += f"\n├ 4) {str(data['items'][3]['title'])}"
-            results += f"\n├ 5) {str(data['items'][4]['title'])}"
-            results += f"\n├ 6) {str(data['items'][5]['title'])}"
-            results += f"\n├ 7) {str(data['items'][6]['title'])}"
-            results += f"\n├ 8) {str(data['items'][7]['title'])}"
-            results += f"\n├ 9) {str(data['items'][8]['title'])}"
-            results += f"\n├ 10) {str(data['items'][9]['title'])}"
-            results += f"\n├ 11) {str(data['items'][10]['title'])}"
-            results += f"\n├ 12) {str(data['items'][11]['title'])}"
-            results += f"\n├ 13) {str(data['items'][12]['title'])}"
-            results += f"\n├ 14) {str(data['items'][13]['title'])}"
-            results += f"\n├ 15) {str(data['items'][14]['title'])}"
-            results += f"\n├ 16) {str(data['items'][15]['title'])}"
-            results += f"\n├ 17) {str(data['items'][16]['title'])}"
-            results += f"\n├ 18) {str(data['items'][17]['title'])}"
-            results += f"\n├ 19) {str(data['items'][18]['title'])}"
-            results += f"\n├ 20) {str(data['items'][19]['title'])}"
-            results += f"\n├ 21) {str(data['items'][20]['title'])}"
-            results += f"\n├ 22) {str(data['items'][21]['title'])}"
-            results += f"\n├ 23) {str(data['items'][22]['title'])}"
-            results += f"\n├ 24) {str(data['items'][23]['title'])}"
-            results += "\n├"
-            results += "\n╰───[ Ended ]"
-            client.sendReplyMessage(msg_id, to, results)
+            if len(cond) == 1:
+                no = 0
+                result = f"> Wikipedia Related {textsl.upper()} // Founds : {len(data['items'])}\n"
+                for reighpuy in data["items"]:
+                    no += 1
+                    result += f'\n   ({str(no)}). {reighpuy["title"]} | [{reighpuy["wikidata_id"]}]'
+                client.sendReplyMessage(msg_id, to, result)
           except:client.sendReplyMessage(msg_id, to, f"# Failed, {textsl} is Not Found.")
         elif texttl.startswith('summary '):
           try:
@@ -375,113 +492,99 @@ def executeCmd(msg, text, txt, cmd, msg_id, receiver, sender, to, setKey):
             req = requests.get(f"https://id.wikipedia.org/api/rest_v1/page/summary/{str(textsl)}?redirect=false")
             data = req.text
             data = json.loads(data)
-            results = "╭───[ Wikipedia Summary ]"
-            results += "\n├"
-            results += "\n├ Title : {}".format(str(data["title"]))
-            results += "\n├ Wikibas_item : {}".format(str(data["wikibase_item"]))
-            results += "\n├ Lang : {}".format(str(data["lang"]))
-            results += "\n├ Description : {}".format(str(data["description"]))
-            results += "\n├"
-            results += "\n╰───[ Ended ]"
-            results += "\n├ Full Desc : {}".format(str(data["extract"]))
-            client.sendReplyMessage(msg_id, to, results)
+            result = f" > Wikipedia Summary {textsl.capitalize()}"
+            result += f"\n\tTitle : {data['title']}"
+            result += f"\n\tType : {data['type']}"
+            result += f"\n\tPage ID : {int(data['pageid'])}"
+            result += f"\n\tWikibase Item : {data['wikibase_item']}"
+            result += f"\n\tLanguage : {data['lang']}"
+            result += f"\n\tDescription : {data['extract']}"
+            client.sendReplyMessage(msg_id,to, result)
           except:client.sendReplyMessage(msg_id, to, f"# Failed, {textsl} Not Found.")
         elif texttl.startswith('medialist '):
           try:
             texts = textt[10:]
             textsl = texts.lower()
-            req = requests.get(f"https://id.wikipedia.org/api/rest_v1/page/media-list/{str(textsl)}?redirect=false")
+            key = setKey.title()
+            sep = textsl.split(" ")
+            query =  textsl.replace(sep[0]+" ","")
+            cond = query.split("-")
+            search = str(cond[0])
+            req = requests.get(f"https://id.wikipedia.org/api/rest_v1/page/media-list/{str(search)}?redirect=false")
             data = req.text
             data = json.loads(data)
-            results = "╭───[ Wikipedia Medialist ]"
-            results += "\n├"
-            results += "\n├ Type : {}".format(str(data["items"][0]["type"]))
-            results += "\n├ Title : {}".format(str(data["items"][0]["title"]))
-            results += "\n├ Caption : {}".format(str(data["items"][0]["caption"]["text"]))
-            results += "\n├"
-            results += "\n╰───[ Ended ]"
-            client.sendReplyMessage(msg_id, to, results)
-          except:client.sendReplyMessage(msg_id, to, f"# Failed, {textsl} Not Found.")
+            if len(cond) == 1:
+                no = 0
+                result = f"> Wikipedia Medialist {textsl.capitalize()} // Founds : {len(data['items'])}\n"
+                for reighpuy in data["items"]:
+                    no += 1
+                    result += f'\n   ({str(no)}). {reighpuy["title"]}'
+                result += f"\n\nFor Info Using :\n\t`{key}Wikipedia Medialist {textsl.capitalize()}-[number]`"
+                client.sendReplyMessage(msg_id, to, result)
+            elif len(cond) == 2:
+                try:
+                    num = int(cond[1])
+                    if num <= len(data["items"]):
+                        search = data["items"][num - 1]
+                        result = f" > Wikipedia Medialist {query.capitalize()}"
+                        result += f"\n\tTitle : {search['title']}"
+                        result += f"\n\tType : {search['type']}"
+                        result += f"\n\tDescription : {search['caption']['text']}"
+                        #client.sendImageWithURL(to, f"https:{search['srcset'][0]['src']}")
+                        client.sendReplyMessage(msg_id,to, result)
+                except:client.sendReplyMessage(msg_id,to, "# Failed.")
+          except:client.sendReplyMessage(msg_id, to, f"# Failed, {query} Not Found.")
         elif texttl.startswith('related '):
           try:
             texts = textt[8:]
             textsl = texts.lower()
-            req = requests.get(f"https://id.wikipedia.org/api/rest_v1/page/related/{str(textsl)}")
+            key = setKey.title()
+            sep = textsl.split(" ")
+            query =  textsl.replace(sep[0]+" ","")
+            cond = query.split("-")
+            search = str(cond[0])
+            req = requests.get(f"https://id.wikipedia.org/api/rest_v1/page/related/{str(search)}")
             data = req.text
             data = json.loads(data)
-            results = "╭───[ Wikipedia Related ]"
-            results += "\n├"
-            results += "\n├ 1) {}".format(str(data["pages"][0]["title"]))
-            results += "\n├ 2) {}".format(str(data["pages"][1]["title"]))
-            results += "\n├ 3) {}".format(str(data["pages"][2]["title"]))
-            results += "\n├ 4) {}".format(str(data["pages"][3]["title"]))
-            results += "\n├ 5) {}".format(str(data["pages"][4]["title"]))
-            results += "\n├"
-            results += "\n╰───[ Ended ]"
-            client.sendReplyMessage(msg_id, to, results)
-          except:client.sendReplyMessage(msg_id, to, f"# Failed, {textsl} Not Found.")
+            if len(cond) == 1:
+                no = 0
+                result = f"> Wikipedia Related {textsl.capitalize()} // Founds : {len(data['pages'])}\n"
+                for reighpuy in data["pages"]:
+                    no += 1
+                    result += f'\n   ({str(no)}). {reighpuy["title"]}'
+                result += f"\n\nFor Info Using :\n\t`{key}Wikipedia Related {textsl.capitalize()}-[number]`"
+                client.sendReplyMessage(msg_id, to, result)
+            elif len(cond) == 2:
+                try:
+                    num = int(cond[1])
+                    if num <= len(data["pages"]):
+                        search = data["pages"][num - 1]
+                        result = f" > Wikipedia Related {query.capitalize()}"
+                        result += f"\n\tTitle : {search['title']}"
+                        result += f"\n\tPage ID : {int(search['pageid'])}"
+                        result += f"\n\tType : {search['type']}"
+                        result += f"\n\tLanguage : {search['lang']}"
+                        result += f"\n\tWikiBase Item : {search['wikibase_item']}"
+                        result += f"\n\tDescription : {search['extract']}"
+                        #client.sendImageWithURL(to, f"{search['thumbnail']['source']}")
+                        client.sendReplyMessage(msg_id,to, result)
+                except:client.sendReplyMessage(msg_id,to, "# Failed.")
+          except:client.sendReplyMessage(msg_id, to, f"# Failed, {query} Not Found.")
         elif texttl.startswith('randomsummary'):
           try:
             req = requests.get("https://id.wikipedia.org/api/rest_v1/page/random/summary")
             data = req.text
             data = json.loads(data)
-            results = "╭───[ Wikipedia Random Summary ]"
-            results += "\n├"
-            results += "\n├ Title : {}".format(str(data["title"]))
-            results += "\n├ Wikibase_item : {}".format(str(data["wikibase_item"]))
-            results += "\n├ PageId : {}".format(str(data["pageid"]))
-            results += "\n├ Language : {}".format(str(data["lang"]))
-            results += "\n├ Description : {}".format(str(data["description"]))
-            results += "\n├"
-            results += "\n╰───[ Ended ]"
-            results += "\nFull Desc : {}".format(str(data["extract"]))
+            results = " > Wikipedia Random Summary"
+            results += f'\n\tTitle : {str(data["title"])}'
+            results += f'\n\tWikibase_item : {str(data["wikibase_item"])}'
+            results += f'\n\tPageId : {str(data["pageid"])}'
+            results += f'\n\tLanguage : {str(data["lang"])}'
+            #results += f'\n\tDescription : {str(data["description"])}'
+            results += f'\n\tFull Desc : {str(data["extract"])}'
             client.sendReplyMessage(msg_id, to, results)
           except:client.sendReplyMessage(msg_id, to, "# Failed.")
 
-    # HARRYPOTTER
-    elif cmd.startswith('harrypotter'):
-        textt = removeCmd(text, setKey)
-        texttl = textt.lower()
-        param1 = sender
-        results = '╭───「 Harrypotter 」'
-        results += '\n├'
-        results += '\n├ Usage : '
-        results += '\n│ • {key}Harrypotter Profile (name)'
-        results += '\n│ • {key}Harrypotter Charlist'
-        results += '\n├'
-        results += '\n╰───「 Ended 」'
-        if cmd == 'harrypotter':
-            client.sendReplyMessage(msg_id, to, parsingRes(results).format_map(SafeDict(key=setKey.title())))
-        elif texttl.startswith("profile "):
-          try:
-            texts = textt[8:]
-            textsl = texts.lower()
-            req = requests.get(f"https://www.potterapi.com/v1/characters/?key=$2a$10$cO8xUVqBD2LPqRb6sF.Z1uGpDQ0Xv.L.quEnQh6USoxdyjP7v7g/e&name={str(textsl)}")
-            data = req.text
-            data = json.loads(data)
-            results = "╭──「 HarryPotter - Character 」"
-            results += "\n├ "
-            results += f"\n├ Name : {(str(data[0]['name']))}"
-            results += f"\n├ ID : {(str(data[0]['_id']))}"
-            results += f"\n├ House : {(str(data[0]['house']))}"
-            results += f"\n├ School : {(str(data[0]['school']))}"
-            results += f"\n├ Blood Status : {(str(data[0]['bloodStatus']))}"
-            results += f"\n├ Species : {(str(data[0]['species']))}"
-            results += "\n├"
-            results += "\n╰───「 Ended 」"
-            mantap={
-                'type': 'text',
-                'text': f'{str(results)}',
-                'sentBy': {
-                    'label': 'Harry Potter Characters',
-                    'iconUrl' : "https://2.bp.blogspot.com/-DlE53qq9NtA/VlKJORbZbfI/AAAAAAAAFl8/1Ypt2CW4iRQ/s1600/Harry%2BPotter%2Band%2Bsorcerer%2527s%2Bstone.jpg",
-                    'linkUrl' : 'http://line.me/ti/p/~yapuy'
-                }
-            }
-            sendTemplate(to, mantap)
-          except:client.sendReplyMessage(msg_id,to, f"Failed, {textsl} Not Found.")
-        elif texttl.startswith("charlist"):
-            client.sendReplyMessage(msg_id,to, "https://github.com/reighpuy/harry_potter_api/blob/master/characters.txt")
     # SUPERHERO
     elif cmd.startswith('superhero'):
       try:
@@ -489,23 +592,20 @@ def executeCmd(msg, text, txt, cmd, msg_id, receiver, sender, to, setKey):
         texttl = textt.lower()
         param1 = sender
         client.findAndAddContactsByMid(param1)
-        results = '╭───「 Superhero 」'
-        results += '\n├'
-        results += '\n├ Max Number of Hero : 731'
-        results += '\n├ Usage : '
-        results += '\n│ • {key}Superhero List'
-        results += '\n│ • {key}Superhero Search (name)'
-        results += '\n│ • {key}Superhero Num (no)'
-        results += '\n│ • {key}Superhero Powerstats (no)'
-        results += '\n│ • {key}Superhero Bio (no)'
-        results += '\n│ • {key}Superhero Appearance (no)'
-        results += '\n│ • {key}Superhero Work (no)'
-        results += '\n│ • {key}Superhero Connections (no)'
-        results += '\n│ • {key}Superhero Image (no)'
-        results += '\n├'
-        results += '\n╰───「 Reighpuy @HelloWorld 」'
+        results = ' > Superhero'
+        results += '\nMax Number of Hero : 731'
+        results += '\n\nUsage : '
+        results += '\n\t{key}Superhero List'
+        results += '\n\t{key}Superhero Search (name)'
+        results += '\n\t{key}Superhero Num (no)'
+        results += '\n\t{key}Superhero Powerstats (no)'
+        results += '\n\t{key}Superhero Bio (no)'
+        results += '\n\t{key}Superhero Appearance (no)'
+        results += '\n\t{key}Superhero Work (no)'
+        results += '\n\t{key}Superhero Connections (no)'
+        results += '\n\t{key}Superhero Image (no)'
         if cmd == 'superhero':
-            client.sendReplyMessage(msg_id, to, parsingRes(results).format_map(SafeDict(key=setKey.title())))
+            client.sendReplyMessage(msg_id, to, results.format_map(SafeDict(key=setKey.title())))
         elif texttl.startswith('list'):
             client.sendReplyMessage(msg_id,to, "https://github.com/reighpuy/super_hero/blob/master/daftar_super_hero")
         elif texttl.startswith('num '):
@@ -595,43 +695,35 @@ def executeCmd(msg, text, txt, cmd, msg_id, receiver, sender, to, setKey):
             r = requests.get(f"https://www.superheroapi.com/api.php/YOUR_API_KEY/search/{textsl}")
             data = r.text
             data = json.loads(data)
-            results = "╭───[ Superhero Info ]"
-            results += f'\n├'
-            results += f'\n├ Nama : {data["results-for"]}'
-            results += f'\n├ ID : {data["results"][0]["id"]}'
-            results += "\n├"
-            results += f'\n├ -> Power stats : '
-            results += f'\n├ Intelligence : {data["results"][0]["powerstats"]["intelligence"]}'
-            results += f'\n├ Strength : {data["results"][0]["powerstats"]["strength"]}'
-            results += f'\n├ Speed : {data["results"][0]["powerstats"]["speed"]}'
-            results += f'\n├ Durability : {data["results"][0]["powerstats"]["durability"]}'
-            results += f'\n├ Power : {data["results"][0]["powerstats"]["power"]}'
-            results += f'\n├ Combat : {data["results"][0]["powerstats"]["combat"]}'
-            results += f'\n├'
-            results += f'\n├ -> Biography : '
-            results += f'\n├ Full Name : {data["results"][0]["biography"]["full-name"]}'
-            results += f'\n├ Alter egos : {data["results"][0]["biography"]["alter-egos"]}'
-            results += f'\n├ Place of-birth : {data["results"][0]["biography"]["place-of-birth"]}'
-            results += f'\n├ First appearance : {data["results"][0]["biography"]["first-appearance"]}'
-            results += f'\n├ Publisher : {data["results"][0]["biography"]["publisher"]}'
-            results += f'\n├ Alignment : {data["results"][0]["biography"]["alignment"]}'
-            results += f'\n├'
-            results += f'\n├ -> Appearance : '
-            results += f'\n├ Gender : {data["results"][0]["appearance"]["gender"]}'
-            results += f'\n├ Race : {data["results"][0]["appearance"]["race"]}'
-            results += f'\n├ Height : {data["results"][0]["appearance"]["height"][1]}'
-            results += f'\n├ Weight : {data["results"][0]["appearance"]["weight"][1]}'
-            results += f'\n├ Eye color : {data["results"][0]["appearance"]["eye-color"]}'
-            results += f'\n├ Hair color : {data["results"][0]["appearance"]["hair-color"]}'
-            results += f'\n├'
-            results += f'\n├ -> Work : '
-            results += f'\n├ Occupation : {data["results"][0]["work"]["occupation"]}'
-            results += f'\n├ Base : {data["results"][0]["work"]["base"]}'
-            results += f'\n├'
-            results += f'\n├ -> Connections : '
-            results += f'\n├ Group affiliation : {data["results"][0]["connections"]["group-affiliation"]}'
-            results += "\n├"
-            results += "\n╰───[ Reighpuy @HelloWorld ]"
+            results = " > Superhero Info"
+            results += f'\n\tNama : {data["results-for"]}'
+            results += f'\n\tID : {data["results"][0]["id"]}'
+            results += f'\n\t-> Power stats : '
+            results += f'\n\tIntelligence : {data["results"][0]["powerstats"]["intelligence"]}'
+            results += f'\n\tStrength : {data["results"][0]["powerstats"]["strength"]}'
+            results += f'\n\tSpeed : {data["results"][0]["powerstats"]["speed"]}'
+            results += f'\n\tDurability : {data["results"][0]["powerstats"]["durability"]}'
+            results += f'\n\tPower : {data["results"][0]["powerstats"]["power"]}'
+            results += f'\n\tCombat : {data["results"][0]["powerstats"]["combat"]}'
+            results += f'\n\t-> Biography : '
+            results += f'\n\tFull Name : {data["results"][0]["biography"]["full-name"]}'
+            results += f'\n\tAlter egos : {data["results"][0]["biography"]["alter-egos"]}'
+            results += f'\n\tPlace of-birth : {data["results"][0]["biography"]["place-of-birth"]}'
+            results += f'\n\tFirst appearance : {data["results"][0]["biography"]["first-appearance"]}'
+            results += f'\n\tPublisher : {data["results"][0]["biography"]["publisher"]}'
+            results += f'\n\tAlignment : {data["results"][0]["biography"]["alignment"]}'
+            results += f'\n\t-> Appearance : '
+            results += f'\n\tGender : {data["results"][0]["appearance"]["gender"]}'
+            results += f'\n\tRace : {data["results"][0]["appearance"]["race"]}'
+            results += f'\n\tHeight : {data["results"][0]["appearance"]["height"][1]}'
+            results += f'\n\tWeight : {data["results"][0]["appearance"]["weight"][1]}'
+            results += f'\n\tEye color : {data["results"][0]["appearance"]["eye-color"]}'
+            results += f'\n\tHair color : {data["results"][0]["appearance"]["hair-color"]}'
+            results += f'\n\t-> Work : '
+            results += f'\n\tOccupation : {data["results"][0]["work"]["occupation"]}'
+            results += f'\n\tBase : {data["results"][0]["work"]["base"]}'
+            results += f'\n\t-> Connections : '
+            results += f'\n\tGroup affiliation : {data["results"][0]["connections"]["group-affiliation"]}'
             client.sendReplyMessage(msg_id,to, results)
       except:client.sendReplyMessage(msg_id,to, f"# Failed, Superehero {textsl} Not Found.")
 
@@ -643,12 +735,13 @@ def executeCmd(msg, text, txt, cmd, msg_id, receiver, sender, to, setKey):
             r = requests.get(f"http://countryapi.gear.host/v1/Country/getCountries?pName={str(ordered)}")
             data = r.text
             data = json.loads(data)
-            results = f'Name : {str(data["Response"][0]["Name"])}'
-            results += f'\nAlpha 2 Code : {str(data["Response"][0]["Alpha2Code"])}'
-            results += f'\nAlpha 3 Code : {str(data["Response"][0]["Alpha3Code"])}'
-            results += f'\nNative Name : {str(data["Response"][0]["NativeName"])}'
-            results += f'\nRegion : {str(data["Response"][0]["Region"])}'
-            results += f'\nSub Region : {str(data["Response"][0]["SubRegion"])}'
+            results += f' > Country Info {ordered}'
+            results += f'\n\tName : {str(data["Response"][0]["Name"])}'
+            results += f'\n\tAlpha 2 Code : {str(data["Response"][0]["Alpha2Code"])}'
+            results += f'\n\tAlpha 3 Code : {str(data["Response"][0]["Alpha3Code"])}'
+            results += f'\n\tNative Name : {str(data["Response"][0]["NativeName"])}'
+            results += f'\n\tRegion : {str(data["Response"][0]["Region"])}'
+            results += f'\n\tSub Region : {str(data["Response"][0]["SubRegion"])}'
             mantap={
                 'type': 'text',
                 'text': '{}'.format(str(results)),
@@ -818,9 +911,9 @@ def executeCmd(msg, text, txt, cmd, msg_id, receiver, sender, to, setKey):
             if len(cond) == 1:
                 no = 0
                 result = f"> {query.capitalize()}"
-                for anu in data["result"][0:10]:
+                for reighpuy in data["result"][0:10]:
                     no += 1
-                    result += "\n   ({}). {} [{}]".format(str(no), anu["title"], anu["developer"])
+                    result += "\n   ({}). {} [{}]".format(str(no), reighpuy["title"], reighpuy["developer"])
                 result += f"\nFor Info Using :\n\t`{key}Playstore {query}-[num]`"
                 client.sendReplyMessage(msg_id,to, result)
             elif len(cond) == 2:
@@ -828,9 +921,9 @@ def executeCmd(msg, text, txt, cmd, msg_id, receiver, sender, to, setKey):
                     num = int(cond[1])
                     if num <= len(data["result"]):
                         search = data["result"][num - 1]
-                        result = f"Title : {search['title']}"
-                        result += f"\nDescription : {search['desc']}"
-                        result += f"\nURL : {search['url']}"
+                        result = f"[ Title : {search['title']}"
+                        result += f"\n\tDescription : {search['desc']}"
+                        result += f"\n\tURL : {search['url']}"
                         client.sendImageWithURL(to, f"{search['image']}")
                         client.sendReplyMessage(msg_id,to, result)
                 except:client.sendReplyMessage(msg_id,to, "# Failed.")
@@ -848,9 +941,9 @@ def executeCmd(msg, text, txt, cmd, msg_id, receiver, sender, to, setKey):
             data = json.loads(data)
             no = 0
             result = "> {}".format(query.capitalize())
-            for anu in data["result"][0:10]:
+            for reighpuy in data["result"][0:10]:
                 no += 1
-                result += "\n   ({}). {} \n\t  URL -> [{}]".format(str(no), anu["title"], anu["url"])
+                result += "\n   ({}). {} \n\t  URL -> [{}]".format(str(no), reighpuy["title"], reighpuy["url"])
             result += f"\nFor Info Using :\n\t`{key}Searchmusic {query}-[num]`"
             client.sendReplyMessage(msg_id,to, result)
         except Exception as error:
@@ -867,43 +960,44 @@ def executeCmd(msg, text, txt, cmd, msg_id, receiver, sender, to, setKey):
             data = json.loads(data)
             no = 0
             result = "> {}".format(query.capitalize())
-            for anu in data["result"][0:10]:
+            for reighpuy in data["result"][0:10]:
                 no += 1
-                result += "\n   ({}). `{}` [{}]".format(str(no), anu["title"], anu["date"])
+                result += "\n   ({}). `{}` [{}]".format(str(no), reighpuy["title"], reighpuy["date"])
             #result += f"\nFor Info Using :\n\t`{key}Tvchannel {query}-[num]`"
             client.sendReplyMessage(msg_id,to, result)
         except Exception as error:
             print(error)
 
-    # Urban dict
-    elif cmd.startswith("urbandict "):
-      try:
-          process = msg.text.split(" ")
-          ordered = msg.text.replace(process[0] + " ","")
-          r = requests.get("http://urbanscraper.herokuapp.com/search/{}".format(str(ordered)))
-          data = r.text
-          data = json.loads(data)
-          results = "Term : {}".format(str(data[0]["term"]))
-          results += "\nDefinisi : {}".format(str(data[0]["definition"]))
-          results += "\nContoh : {}".format(str(data[0]["example"]))
-          results += "\nAlamat : {}".format(str(data[0]["url"]))
-          client.sendReplyMessage(msg_id,to, results)
-      except:
-          client.sendReplyMessage(msg_id, to,"# Failed : {} Not Found.".format(ordered))
+    # CAT FACTS
+    elif cmd == 'cat facts':
+        data = json.loads(requests.get("https://cat-fact.herokuapp.com/facts").text)
+        yup = data["all"]
+        random_index = randint(0, len(yup)-1)
+        yup2 = yup[random_index]['text']
+        client.sendReplyMessage(msg_id, to, yup2)
 
-    # ANTONYM
-    elif cmd.startswith("antonym "):
+    # CAT IMAGE
+    elif cmd.startswith("catimage"):
       try:
-            process = msg.text.split(" ")
-            ordered = msg.text.replace(process[0] + " ","")
-            r = requests.get("https://api.datamuse.com/words?rel_ant={}".format(str(ordered)))
-            data = r.text
-            data = json.loads(data)
-            results = f"Antonym of {ordered} is {str(data[0]['word'])}"
-            client.sendReplyMessage(msg_id, to, str(results))
-      except:client.sendReplyMessage(msg_id, to, f"# Failed : {ordered} Not Found.")
+        data = json.loads(requests.get("https://api.thecatapi.com/v1/images/search").text)
+        client.sendImageWithURL(to, data[0]['url'])
+      except:client.sendReplyMessage(msg_id, to, f"# Failed.")
 
-    # SURAH AL'QURAN
+    # DOG IMAGE
+    elif cmd.startswith("dogimage"):
+      try:
+        data = json.loads(requests.get("https://random.dog/woof.json").text)
+        client.sendImageWithURL(to, data['url'])
+      except:client.sendReplyMessage(msg_id, to, f"# Failed.")
+
+    # FOX IMAGE
+    elif cmd.startswith("foximage"):
+      try:
+        data = json.loads(requests.get("https://randomfox.ca/floof/").text)
+        client.sendImageWithURL(to, data['image'])
+      except:client.sendReplyMessage(msg_id, to, f"# Failed.")
+
+    # AL'QURAN SURAH
     elif cmd.startswith("surah "):
       try:
         process = msg.text.split(" ")
@@ -911,18 +1005,17 @@ def executeCmd(msg, text, txt, cmd, msg_id, receiver, sender, to, setKey):
         r = requests.get(f"https://api.banghasan.com/quran/format/json/surat/{str(ordered)}")
         data = r.text
         data = json.loads(data)
-        results = "╭──[ Info Surah ]"
-        results += f'\n├\n├ Nomor Surah : {str(data["hasil"][0]["nomor"])}'
-        results += f'\n├ Nama Surah : {str(data["hasil"][0]["nama"])}'
-        results += f'\n├ Arti Surah : {str(data["hasil"][0]["arti"])}'
-        results += f'\n├ Asma : {str(data["hasil"][0]["asma"])}'
-        results += f'\n├ Start : {str(data["hasil"][0]["start"])}'
-        results += f'\n├ Ayat : {str(data["hasil"][0]["ayat"])}'
-        results += f'\n├ Tipe : {str(data["hasil"][0]["type"])}'
-        results += f'\n├ Urut : {str(data["hasil"][0]["urut"])}'
-        results += f'\n├ Rukuk : {str(data["hasil"][0]["rukuk"])}'
-        results += f'\n├\n╰──[ Reighpuy @HelloWorld ]'
-        results += f'\n\nKeterangan : \n{str(data["hasil"][0]["keterangan"])}'
+        results = " > Info Surah"
+        results += f'\n\tNomor Surah : {str(data["hasil"][0]["nomor"])}'
+        results += f'\n\tNama Surah : {str(data["hasil"][0]["nama"])}'
+        results += f'\n\tArti Surah : {str(data["hasil"][0]["arti"])}'
+        results += f'\n\tAsma : {str(data["hasil"][0]["asma"])}'
+        results += f'\n\tStart : {str(data["hasil"][0]["start"])}'
+        results += f'\n\tAyat : {str(data["hasil"][0]["ayat"])}'
+        results += f'\n\tTipe : {str(data["hasil"][0]["type"])}'
+        results += f'\n\tUrut : {str(data["hasil"][0]["urut"])}'
+        results += f'\n\tRukuk : {str(data["hasil"][0]["rukuk"])}'
+        #results += f'\n\nKeterangan : \n{str(data["hasil"][0]["keterangan"])}'
         client.sendReplyMessage(msg_id, to, str(results))
       except:client.sendReplyMessage(msg_id, to, f"# Failed : {ordered} Not Found.")
 
@@ -931,12 +1024,12 @@ def executeCmd(msg, text, txt, cmd, msg_id, receiver, sender, to, setKey):
         req = requests.get("https://api.nasa.gov/planetary/apod?api_key=plx64zHKoYUg03rYVT8FqmJrwy3xcKsUaW7GsfHr")
         data = req.text
         data = json.loads(data)
-        results = "╭──[ NASA ]"
-        results += f'\n├\n├ Judul : {str(data["title"])}'
-        results += f'\n├ Media Tipe : {str(data["media_type"])}'
-        results += f'\n├ Tanggal : {str(data["date"])}'
-        results += f'\n├ Penjelasan : {str(data["explanation"])}'
-        results += f'\n├\n╰──[ Reighpuy @HelloWorld ]'
+        results = " > Apod"
+        results += f'\n\tTitle : {str(data["title"])}'
+        results += f'\n\tMedia Type : {str(data["media_type"])}'
+        results += f'\n\tDate : {str(data["date"])}'
+        results += f'\n\tDescription : {str(data["explanation"])}'
+        results += f'\n\tURL : {str(data["url"])}'
         mantap={
             'type': 'text',
             'text': f'{str(results)}',
@@ -948,45 +1041,11 @@ def executeCmd(msg, text, txt, cmd, msg_id, receiver, sender, to, setKey):
         }
         sendTemplate(to, mantap)
 
-    # IP CHECK
-    elif cmd.startswith("ipcheck "):
-      try:
-         process = msg.text.split(" ")
-         ordered = msg.text.replace(process[0] + " ","")
-         r = requests.get(f"http://apitrojans.herokuapp.com/checkip?ip={str(ordered)}")
-         data = r.text
-         data = json.loads(data)
-         ret_ = '╭──[ Ip Check ]'
-         ret_ += f'\n├ IP : {str(data["result"]["ip"])}'
-         ret_ += f'\n├ Desimal : {str(data["result"]["decimal"])}'
-         ret_ += f'\n├ Hostname : {str(data["result"]["hostname"])}'
-         ret_ += f'\n├ ASN : {str(data["result"]["asn"])}'
-         ret_ += f'\n├ ISP : {str(data["result"]["isp"])}'
-         ret_ += f'\n├ Organisasi : {str(data["result"]["organization"])}'
-         ret_ += f'\n├ Tipe : {str(data["result"]["type"])}'
-         ret_ += f'\n├ Benua : {str(data["result"]["continent"])}'
-         ret_ += f'\n├ Negara : {str(data["result"]["country"])}'
-         ret_ += f'\n├ Wilayah : {str(data["result"]["region"])}'
-         ret_ += f'\n├ Kota : {str(data["result"]["city"])}'
-         ret_ += f'\n╰──[ Reighpuy @HelloWorld ]'
-         client.sendReplyMessage(msg_id, to, str(ret_))
-      except:client.sendReplyMessage(msg_id, to,"# Failed : {} Not Found.".format(ordered))
-
     elif cmd.startswith("random quote"):
         req = requests.get("http://apitrojans.herokuapp.com/quotes")
         data = req.text
         data = json.loads(data)
         client.sendReplyMessage(msg_id,to, data["result"]["quotes"])
-
-    # CAT FACTS
-    elif cmd == 'cat facts':
-        req = requests.get("https://cat-fact.herokuapp.com/facts")
-        data = req.text
-        data = json.loads(data)
-        yup = data["all"]
-        random_index = randint(0, len(yup)-1)
-        yup2 = yup[random_index]['text']
-        client.sendReplyMessage(msg_id, to, yup2)
 
     # Random Number Story
     elif cmd.startswith("numberinfo "):
@@ -1029,9 +1088,9 @@ def executeCmd(msg, text, txt, cmd, msg_id, receiver, sender, to, setKey):
             if len(cond) == 1:
                 no = 0
                 result = "> Twitter Trending Hashtag in Indonesia"
-                for anu in data["result"]:
+                for reighpuy in data["result"]:
                     no += 1
-                    result += "\n   ({}). {} [ {} ]".format(str(no), anu["title"], anu["count"])
+                    result += "\n   ({}). {} [ {} ]".format(str(no), reighpuy["title"], reighpuy["count"])
                 result += f"\nFor Get the Link Using :\n\t`{key}{query}-[num]`"
                 client.sendReplyMessage(msg_id,to, result)
             elif len(cond) == 2:
@@ -1039,9 +1098,9 @@ def executeCmd(msg, text, txt, cmd, msg_id, receiver, sender, to, setKey):
                     num = int(cond[1])
                     if num <= len(data["result"]):
                         search = data["result"][num - 1]
-                        result = f"Title : {search['title']}"
-                        result += f"\nTweet Count : {search['count']}"
-                        result += f"\nURL : {search['link']}"
+                        result = f"[ Title ]: {search['title']}"
+                        result += f"\n[ Tweet Count ]: {search['count']}"
+                        result += f"\n[ URL ]: {search['link']}"
                         client.sendReplyMessage(msg_id,to, result)
                 except:client.sendReplyMessage(msg_id,to, "# Failed.")
         except Exception as error:
@@ -1060,15 +1119,14 @@ def executeCmd(msg, text, txt, cmd, msg_id, receiver, sender, to, setKey):
         textt = removeCmd(text, setKey)
         texttl = textt.lower()
         cond = textt.split(' ')
-        results = '╭───「 Error 」'
-        results += '\n│ Usage : '
-        results += '\n│ • {key}Error'
-        results += '\n│ • {key}Error Logs'
-        results += '\n│ • {key}Error Reset'
-        results += '\n│ • {key}Error Detail <errid>'
-        results += '\n╰───────────'
+        results = ' > Error'
+        results += '\nUsage : '
+        results += '\n\t{key}Error'
+        results += '\n\t{key}Error Logs'
+        results += '\n\t{key}Error Reset'
+        results += '\n\t{key}Error Detail <errid>'
         if cmd == 'error':
-            client.sendReplyMessage(msg_id, to, parsingRes(results).format_map(SafeDict(key=setKey.title())))
+            client.sendReplyMessage(msg_id, to, results.format_map(SafeDict(key=setKey.title())))
         elif cond[0].lower() == 'logs':
             try:
                 filee = open('errorLog.txt', 'r')
@@ -1101,7 +1159,7 @@ def executeCmd(msg, text, txt, cmd, msg_id, receiver, sender, to, setKey):
             client.sendReplyMessage(msg_id, to, 'Success Clear error logs')
         elif cond[0].lower() == 'detail':
             if len(cond) < 2:
-                return client.sendReplyMessage(msg_id, to, parsingRes(results).format_map(SafeDict(key=setKey.title())))
+                return client.sendReplyMessage(msg_id, to, results.format_map(SafeDict(key=setKey.title())))
             errid = cond[1]
             if os.path.exists('tmp/errors/%s.txt' % errid):
                 with open('tmp/errors/%s.txt' % errid, 'r') as f:
@@ -1109,21 +1167,20 @@ def executeCmd(msg, text, txt, cmd, msg_id, receiver, sender, to, setKey):
             else:
                 return client.sendReplyMessage(msg_id, to, 'Failed display details error, errorid not valid')
         else:
-            client.sendReplyMessage(msg_id, to, parsingRes(results).format_map(SafeDict(key=setKey.title())))
+            client.sendReplyMessage(msg_id, to, results.format_map(SafeDict(key=setKey.title())))
 
     elif txt.startswith('setkey'):
         textt = removeCmd(text, setKey)
         texttl = textt.lower()
-        res = '╭───「 Setting Key 」'
-        res += '\n│ Status : ' + bool_dict[settings['setKey']['status']][1]
-        res += '\n│ Key : ' + settings['setKey']['key'].title()
-        res += '\n│ Usage : '
-        res += '\n│ • Setkey'
-        res += '\n│ • Setkey <on/off>'
-        res += '\n│ • Setkey <key>'
-        res += '\n╰──────────'
+        res = ' > Setting Key'
+        res += '\nStatus : ' + bool_dict[settings['setKey']['status']][1]
+        res += '\nKey : ' + settings['setKey']['key'].title()
+        res += '\nUsage : '
+        res += '\n\tSetkey'
+        res += '\n\tSetkey <on/off>'
+        res += '\n\tSetkey <key>'
         if txt == 'setkey':
-            client.sendReplyMessage(msg_id, to, parsingRes(res))
+            client.sendReplyMessage(msg_id, to, res)
         elif texttl == 'on':
             if settings['setKey']['status']:
                 client.sendReplyMessage(msg_id, to, 'Gagal mengaktifkan setkey, setkey sudah aktif')
@@ -1142,10 +1199,63 @@ def executeCmd(msg, text, txt, cmd, msg_id, receiver, sender, to, setKey):
 
             # # # # # INFO COMMANDS # # # # 
 
+
+    # Dictionary Details
+    elif cmd == "detail dictionary".lower() or cmd == "details dictionary".lower():
+        key = setKey.title()
+        helpDictionary = helpdictionary()
+        client.sendReplyMessage(msg_id, to, str(helpDictionary)+f"\n\nFor Info Using : \n\t{key}Info [command_name]\n\tExample : {key}Info Antonym")
+
+    # Utility Details
+    elif cmd == "detail utility".lower() or cmd == "details utility".lower():
+        key = setKey.title()
+        helpUtility = helputility()
+        client.sendReplyMessage(msg_id, to, str(helpUtility)+f"\n\nFor Info Using : \n\t{key}Info [command_name]\n\tExample : {key}Info Apod")
+
     # Antonym
     elif cmd == "info antonym".lower():
         key = setKey.title()
-        client.sendReplyMessage(msg_id, to, f"Usage : {key}antonym [word]\n\t  Ex : {key}Antonym Bad\n\tWhos can use this Command? : Admin & Non-Admin")
+        client.sendReplyMessage(msg_id, to, f"Usage : {key}antonym [word]\n\t  Example : {key}Antonym Bad\n\tWhos can use this Command? : Admin & Non-Admin")
+
+    # Kbbi
+    elif cmd == "info kbbi".lower():
+        key = setKey.title()
+        client.sendReplyMessage(msg_id, to, f"Usage : {key}Kbbi [kata]\n\t  Example : {key}Kbbi tidur\n\tWhos can use this Command? : Admin & Non-Admin")
+
+    # Kindof
+    elif cmd == "info kindof".lower():
+        key = setKey.title()
+        client.sendReplyMessage(msg_id, to, f"Usage : {key}Kindof [word]\n\t  Example : {key}Kindof Cow\n\tWhos can use this Command? : Admin & Non-Admin")
+
+    # Meanslike
+    elif cmd == "info meanslike".lower():
+        key = setKey.title()
+        client.sendReplyMessage(msg_id, to, f"Usage : {key}Meanslike [word]\n\t  Example : {key}Meanslike rose\n\tWhos can use this Command? : Admin & Non-Admin")
+
+    # Popularnouns
+    elif cmd == "info popularnouns".lower():
+        key = setKey.title()
+        client.sendReplyMessage(msg_id, to, f"Usage : {key}Popularnouns [word]\n\t  Example : {key}Popularnouns Cow\n\tWhos can use this Command? : Admin & Non-Admin")
+
+    # Popularadjective
+    elif cmd == "info popularadjective".lower():
+        key = setKey.title()
+        client.sendReplyMessage(msg_id, to, f"Usage : {key}Popularadjective [word]\n\t  Example : {key}Popularadjective Cow\n\tWhos can use this Command? : Admin & Non-Admin")
+
+    # Synonym
+    elif cmd == "info synonym".lower():
+        key = setKey.title()
+        client.sendReplyMessage(msg_id, to, f"Usage : {key}Synonym [word]\n\t  Example : {key}Synonym Cow\n\tWhos can use this Command? : Admin & Non-Admin")
+
+    # Urbandict
+    elif cmd == "info urbandict".lower():
+        key = setKey.title()
+        client.sendReplyMessage(msg_id, to, f"Usage : {key}Urbandict [word]\n\tWhos can use this Command? : Admin & Non-Admin")
+
+    # Wikipedia
+    elif cmd == "info wikipedia".lower():
+        key = setKey.title()
+        client.sendReplyMessage(msg_id, to, f"Usage : {key}Wikipedia\n\tWhos can use this Command? : Admin & Non-Admin")
 
     # Cat Facts
     elif cmd == "info catfacts".lower():
@@ -1155,37 +1265,22 @@ def executeCmd(msg, text, txt, cmd, msg_id, receiver, sender, to, setKey):
     # Country Info
     elif cmd == "info countryinfo".lower():
         key = setKey.title()
-        client.sendReplyMessage(msg_id, to, f"Other Information of Country : \n\tex : {key}Capital id\n\tex : {key}Region id\n\tex : {key}Subregion id\n\tex : {key}Timezone id\n\tex : {key}Nativename id\n\tex : {key}Numericcode id\n\tex : {key}Population id\n\tex : {key}Callingcode id\n\tex : {key}Currenciesname id\n\tex : {key}Currenciescode id\n\tex : {key}currenciessymbol id\n\nUsage : {key}Countryinfo [country_code]\n\t  Ex : {key}Countryinfo id\n\tWhos can use this Command? : Admin & Non-Admin")
+        client.sendReplyMessage(msg_id, to, f"Other Information of Country : \n\tExample : {key}Capital id\n\tExample : {key}Region id\n\tExample : {key}Subregion id\n\tExample : {key}Timezone id\n\tExample : {key}Nativename id\n\tExample : {key}Numericcode id\n\tExample : {key}Population id\n\tExample : {key}Callingcode id\n\tExample : {key}Currenciesname id\n\tExample : {key}Currenciescode id\n\tExample : {key}currenciessymbol id\n\nUsage : {key}Countryinfo [country_code]\n\t  Example : {key}Countryinfo id\n\tWhos can use this Command? : Admin & Non-Admin")
 
     # Daily Nasa
     elif cmd == "info apod".lower():
         key = setKey.title()
         client.sendReplyMessage(msg_id, to, f"Usage : {key}Apod\n\tWhos can use this Command? : Admin & Non-Admin")
 
-    # Harrypotter
-    elif cmd == "info harrypotter".lower():
-        key = setKey.title()
-        client.sendReplyMessage(msg_id, to, f"Usage : {key}Harrypotter\n\tWhos can use this Command? : Admin & Non-Admin")
-
     # Ipcheck
     elif cmd == "info ipcheck".lower():
         key = setKey.title()
         client.sendReplyMessage(msg_id, to, f"Usage : {key}Ipcheck [IP]\n\tWhos can use this Command? : Admin & Non-Admin")
 
-    # Kbbi
-    elif cmd == "info kbbi".lower():
-        key = setKey.title()
-        client.sendReplyMessage(msg_id, to, f"Usage : {key}Kbbi [kata]\n\t  Ex : {key}Kbbi tidur\n\tWhos can use this Command? : Admin & Non-Admin")
-
-    # Meanslike
-    elif cmd == "info meanslike".lower():
-        key = setKey.title()
-        client.sendReplyMessage(msg_id, to, f"Usage : {key}Meanslike [word]\n\t  Ex : {key}Meanslike rose\n\tWhos can use this Command? : Admin & Non-Admin")
-
     # Number
     elif cmd == "info numberinfo".lower():
         key = setKey.title()
-        client.sendReplyMessage(msg_id, to, f"Usage : {key}Numberinfo [number]\n\t  Ex : {key}Number 18\n\tWhos can use this Command? : Admin & Non-Admin")
+        client.sendReplyMessage(msg_id, to, f"Usage : {key}Numberinfo [number]\n\t  Example : {key}Number 18\n\tWhos can use this Command? : Admin & Non-Admin")
 
     # RandomDate
     elif cmd == "info randomdate".lower():
@@ -1210,32 +1305,22 @@ def executeCmd(msg, text, txt, cmd, msg_id, receiver, sender, to, setKey):
     # Surah
     elif cmd == "info surah".lower():
         key = setKey.title()
-        client.sendReplyMessage(msg_id, to, f"Usage : {key}Surah [nomor]\n\t  Ex : {key}Surah 18\n\tWhos can use this Command? : Admin & Non-Admin")
-
-    # Urbandict
-    elif cmd == "info urbandict".lower():
-        key = setKey.title()
-        client.sendReplyMessage(msg_id, to, f"Usage : {key}Urbandict [word]\n\tWhos can use this Command? : Admin & Non-Admin")
-
-    # Wikipedia
-    elif cmd == "info wikipedia".lower():
-        key = setKey.title()
-        client.sendReplyMessage(msg_id, to, f"Usage : {key}Wikipedia\n\tWhos can use this Command? : Admin & Non-Admin")
+        client.sendReplyMessage(msg_id, to, f"Usage : {key}Surah [nomor]\n\t  Example : {key}Surah 18\n\tWhos can use this Command? : Admin & Non-Admin")
 
     # Ytsearch
     elif cmd == "info ytsearch".lower():
         key = setKey.title()
-        client.sendReplyMessage(msg_id, to, f"Usage : {key}ytsearch\n\t Ex : {key}Ytsearch kekeyi\n\tWhos can use this Command? : Admin & Non-Admin")
+        client.sendReplyMessage(msg_id, to, f"Usage : {key}Ytsearch\n\t Example : {key}Ytsearch kekeyi\n\tWhos can use this Command? : Admin & Non-Admin")
 
     # Playstore
     elif cmd == "info playstore".lower():
         key = setKey.title()
-        client.sendReplyMessage(msg_id, to, f"Usage : {key}Wikipedia\n\t Ex : {key}Playstore line\n\tWhos can use this Command? : Admin & Non-Admin")
+        client.sendReplyMessage(msg_id, to, f"Usage : {key}Playstore\n\t Example : {key}Playstore line\n\tWhos can use this Command? : Admin & Non-Admin")
 
     # Tvchannel
     elif cmd == "info tvchannel".lower():
         key = setKey.title()
-        client.sendReplyMessage(msg_id, to, f"Usage : {key}Wikipedia\n\t Ex : {key}Tvchannel antv\n\tWhos can use this Command? : Admin & Non-Admin")
+        client.sendReplyMessage(msg_id, to, f"Usage : {key}Tvchannel\n\t Example : {key}Tvchannel antv\n\tWhos can use this Command? : Admin & Non-Admin")
 
 def executeOp(op):
     try:
@@ -1290,10 +1375,12 @@ def executeOp(op):
                     logError(talk_error)
                     if talk_error.code in [7, 8, 20]:
                         sys.exit(1)
-                    client.sendReplyMessage(msg_id, to, '# Failed : ' + str(talk_error))
+                    #client.sendReplyMessage(msg_id, to, '# Failed : ' + str(talk_error))
+                    print(str(talk_error))
                 except Exception as error:
                     logError(error)
-                    client.sendReplyMessage(msg_id, to, '# Failed : ' + str(error))
+                    #client.sendReplyMessage(msg_id, to, '# Failed : ' + str(error))
+                    print(str(error))
         elif op.type == 25 or op.type == 25:
             msg      = op.message
             text     = str(msg.text)
@@ -1331,7 +1418,7 @@ def executeOp(op):
         if talk_error.code in [7, 8, 20]:
             sys.exit(1)
     except KeyboardInterrupt:
-        sys.exit('[ System Message ] : *KEYBOARD INTERRUPT.')
+        sys.exit('[ System Message : *KEYBOARD INTERRUPT.')
     except Exception as error:
         logError(error)
 
@@ -1351,7 +1438,7 @@ def runningProgram():
                 sys.exit(1)
             continue
         except KeyboardInterrupt:
-            sys.exit('[ System Message ] : *KEYBOARD INTERRUPT.')
+            sys.exit('[ System Message : *KEYBOARD INTERRUPT.')
         except Exception as error:
             logError(error)
             continue
@@ -1361,5 +1448,5 @@ def runningProgram():
                 oepoll.setRevision(op.revision)
 
 if __name__ == '__main__':
-    print ('[ System Message ] : *PROGRAM HAS BEEN STARTED.\n______________________________')
+    print ('[ System Message : *PROGRAM HAS BEEN STARTED.\n______________________________')
     runningProgram()
