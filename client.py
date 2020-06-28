@@ -100,11 +100,11 @@ def helpmessage():
         key = settings['setKey']['key'].title()
     else:
         key = ''
-    helpMessage ="- General -" + "\n" + \
+    helpMessage ="> General" + "\n" + \
                     "Prefix : ( " + key + " )\n\t" + \
                     " (1). Me" + "\n\t" + \
                     " (2). Author" + "\n\n" + \
-                    "- Media -" + "\n\t" + \
+                    "> Media" + "\n\t" + \
                     " (1). Dictionary" + "\n\t" + \
                     " (2). Utility"
     return helpMessage
@@ -114,7 +114,7 @@ def helpdictionary():
         key = settings['setKey']['key'].title()
     else:
         key = ''
-    helpDictionary ="- Dictionary Command List -" + "\n" + \
+    helpDictionary ="> Dictionary Command List" + "\n" + \
                     "Prefix : ( " + key + " )\n\t" + \
                     " (1). Antonym" + "\n\t" + \
                     " (2). Kbbi" + "\n\t" + \
@@ -132,7 +132,7 @@ def helputility():
         key = settings['setKey']['key'].title()
     else:
         key = ''
-    helpUtility ="- Utility Command Lists -" + "\n" + \
+    helpUtility ="> Utility Command Lists" + "\n" + \
                     "Prefix : ( " + key + " )\n\t" + \
                     " (1). Apod" + "\n\t" + \
                     " (2). Catimage" + "\n\t" + \
@@ -140,16 +140,15 @@ def helputility():
                     " (4). Countryinfo" + "\n\t" + \
                     " (5). Dogimage" + "\n\t" + \
                     " (6). Foximage" + "\n\t" + \
-                    " (7). Ipcheck" + "\n\t" + \
-                    " (8). Number" + "\n\t" + \
-                    " (9). Playstore" + "\n\t" + \
-                    " (10). RandomDate" + "\n\t" + \
-                    " (11). RandomQuote" + "\n\t" + \
-                    " (12). RandomYear" + "\n\t" + \
-                    " (13). Superhero" + "\n\t" + \
-                    " (14). Surah" + "\n\t" + \
-                    " (15). Tvchannel" + "\n\t" + \
-                    " (16). Ytsearch"
+                    " (7). Number" + "\n\t" + \
+                    " (8). Playstore" + "\n\t" + \
+                    " (9). RandomDate" + "\n\t" + \
+                    " (10). RandomQuote" + "\n\t" + \
+                    " (11). RandomYear" + "\n\t" + \
+                    " (12). Superhero" + "\n\t" + \
+                    " (13). Surah" + "\n\t" + \
+                    " (14). Tvchannel" + "\n\t" + \
+                    " (15). Ytsearch"
     return helpUtility
 
 def executeCmd(msg, text, txt, cmd, msg_id, receiver, sender, to, setKey):
@@ -186,8 +185,28 @@ def executeCmd(msg, text, txt, cmd, msg_id, receiver, sender, to, setKey):
         client.sendReplyMessage(msg_id, to, 'Please Wait...')
         settings['restartPoint'] = to
         restartProgram()
-    
-    # # // Sends Bot Menu
+
+    # MENU
+    elif cmd.startswith('menu') or cmd.startswith('help'):
+        textt = removeCmd(text)
+        texttl = textt.lower()
+        helpMessage = helpmessage()
+        helpDictionary = helpdictionary()
+        helpUtility = helputility()
+        key = setKey.title()
+        results = f'  {str(helpMessage)}\nUsage : \n\t{key}help [Media_Command_Name]\n\tEx : {key}help dictionary'
+        if cmd == 'menu' or cmd == 'help':
+            client.sendReplyMessage(msg_id, to, results)
+        elif texttl.startswith('dictionary'):
+          try:
+            client.sendReplyMessage(msg_id, to, str(helpDictionary)+f"\n\nFor Info Using : \n\t{key}Info [command_name]\n\tExample : {key}Info Antonym")
+          except:client.sendReplyMessage(msg_id, to, f"# Failed.")
+        elif texttl.startswith('utility'):
+          try:
+            client.sendReplyMessage(msg_id, to, str(helpUtility)+f"\n\nFor Info Using : \n\t{key}Info [command_name]\n\tExample : {key}Info Apod")
+          except:client.sendReplyMessage(msg_id, to, f"# Failed.")
+
+    # # // MENU WITH FOOTER
     # if cmd == "menu" or cmd == "help":
     #         helpMessage = helpmessage()
     #         key = setKey.title()
@@ -202,11 +221,6 @@ def executeCmd(msg, text, txt, cmd, msg_id, receiver, sender, to, setKey):
     #             }
     #         }
     #         sendTemplate(to, mantap)
-
-    if cmd == "menu" or cmd == "help":
-        helpMessage = helpmessage()
-        key = setKey.title()
-        client.sendReplyMessage(msg_id, to, f'  {str(helpMessage)}\nUsage : \n\t{key}detail [commands]\n\tEx : {key}detail dictionary')
 
     # // Bot Send Profile Of Sender
     if cmd == "me" or cmd == "myprofile":
@@ -1272,11 +1286,6 @@ def executeCmd(msg, text, txt, cmd, msg_id, receiver, sender, to, setKey):
         key = setKey.title()
         client.sendReplyMessage(msg_id, to, f"Usage : {key}Apod\n\tWhos can use this Command? : Admin & Non-Admin")
 
-    # Ipcheck
-    elif cmd == "info ipcheck".lower():
-        key = setKey.title()
-        client.sendReplyMessage(msg_id, to, f"Usage : {key}Ipcheck [IP]\n\tWhos can use this Command? : Admin & Non-Admin")
-
     # Number
     elif cmd == "info numberinfo".lower():
         key = setKey.title()
@@ -1425,7 +1434,7 @@ def executeOp(op):
 def runningProgram():
     if settings['restartPoint'] is not None:
         try:
-            client.sendMessage(settings['restartPoint'], 'Bot is Online!')
+            client.sendMessage(settings['restartPoint'], 'Hey, im Back!')
         except TalkException:
             pass
         settings['restartPoint'] = None
