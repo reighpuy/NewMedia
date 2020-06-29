@@ -107,14 +107,15 @@ def helpmessage():
                     " (3). Me" + "\n\t" + \
                     "> Media" + "\n\t" + \
                     " (1). Dictionary" + "\n\t" + \
-                    " (2). Utility"
+                    " (2). Utility" + "\n\t" + \
+                    " (3). Avataredit"
     return helpMessage
 
 def helpdictionary():
     if settings['setKey']['status'] == True:
         key = settings['setKey']['key'].title()
     else:
-        key = ''
+        key = 'No Prefix'
     helpDictionary ="> Dictionary Command List" + "\n" + \
                     "Prefix : ( " + key + " )\n\t" + \
                     " (1). Antonym" + "\n\t" + \
@@ -132,7 +133,7 @@ def helputility():
     if settings['setKey']['status'] == True:
         key = settings['setKey']['key'].title()
     else:
-        key = ''
+        key = 'No Prefix'
     helpUtility ="> Utility Command Lists" + "\n" + \
                     "Prefix : ( " + key + " )\n\t" + \
                     " (1). Apod" + "\n\t" + \
@@ -151,6 +152,28 @@ def helputility():
                     " (14). Tvchannel" + "\n\t" + \
                     " (15). Ytsearch"
     return helpUtility
+
+def helpavataredit():
+    if settings['setKey']['status'] == True:
+        key = settings['setKey']['key'].title()
+    else:
+        key = 'No Prefix'
+    helpAvataredit ="> AvatarEdits Command List" + "\n" + \
+                    "Prefix : ( " + key + " )\n\t" + \
+                    " (1). Adjust" + "\n\t" + \
+                    " (2). Blur" + "\n\t" + \
+                    " (3). Circular" + "\n\t" + \
+                    " (4). Decopacity" + "\n\t" + \
+                    " (5). Filter1" + "\n\t" + \
+                    " (6). Filter2" + "\n\t" + \
+                    " (7). Filter3" + "\n\t" + \
+                    " (8). Grayscale" + "\n\t" + \
+                    " (9). Outline" + "\n\t" + \
+                    " (10). Oilpaint" + "\n\t" + \
+                    " (11). Rotate" + "\n\t" + \
+                    " (12). Recolor" + "\n\t" + \
+                    " (13). Shadow"
+    return helpAvataredit
 
 def executeCmd(msg, text, txt, cmd, msg_id, receiver, sender, to, setKey):
 
@@ -198,6 +221,7 @@ def executeCmd(msg, text, txt, cmd, msg_id, receiver, sender, to, setKey):
         helpMessage = helpmessage()
         helpDictionary = helpdictionary()
         helpUtility = helputility()
+        helpAvataredit = helpavataredit()
         key = setKey.title()
         results = f'  {str(helpMessage)}\nUsage : \n\t{key}help [Media_Command_Name]\n\tEx : {key}help dictionary'
         if cmd == 'menu' or cmd == 'help':
@@ -210,6 +234,11 @@ def executeCmd(msg, text, txt, cmd, msg_id, receiver, sender, to, setKey):
           try:
             client.sendReplyMessage(msg_id, to, str(helpUtility)+f"\n\nFor Info Using : \n\t{key}Info [command_name]\n\tExample : {key}Info Apod")
           except:client.sendReplyMessage(msg_id, to, f"# Failed.")
+        elif texttl.startswith('avataredit'):
+          try:
+            client.sendReplyMessage(msg_id, to, str(helpAvataredit)+f"\nExample : \n\t{key}Recolor @Mention")
+          except:client.sendReplyMessage(msg_id, to, f"# Failed.")
+
 
     # # // MENU WITH FOOTER
     # if cmd == "menu" or cmd == "help":
@@ -1216,8 +1245,9 @@ def executeCmd(msg, text, txt, cmd, msg_id, receiver, sender, to, setKey):
             settings['setKey']['key'] = texttl
             client.sendReplyMessage(msg_id, to, 'Sukses ubah set kunci ke (%s)' % textt)
 
-            # # # # # INFO COMMANDS # # # # 
 
+
+            # # # # # INFO COMMANDS # # # # 
 
     # Dictionary Details
     elif cmd == "detail dictionary".lower() or cmd == "details dictionary".lower():
