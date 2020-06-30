@@ -43,7 +43,7 @@ class NewQRLogin:
         res = resp.json()
         if resp.status_code != 200:
             raise Exception(res)
-        callback("Login URL: %s" % (res["url"]))
+        callback("Login Link :\n( %s )" % (res["url"]))
 
         while "token" not in res:
             resp = requests.post(self.API_URL + res["callback"])
@@ -52,7 +52,7 @@ class NewQRLogin:
                 raise Exception(res)
 
             if "pin" in res:
-                callback("MASUKKAN PIN: %s" % (res["pin"]))
+                callback("\nPIN: %s\n__________\n\n" % (res["pin"]))
 
         return self.parseLogin(res)
 
