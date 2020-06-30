@@ -399,8 +399,279 @@ def executeCmd(msg, text, txt, cmd, msg_id, receiver, sender, to, setKey):
           results += f"\n\tSample : {str(data[0]['example'])}"
           results += f"\n\tURL : {str(data[0]['url'])}"
           client.sendReplyMessage(msg_id,to, results)
-      except:
-          client.sendReplyMessage(msg_id, to,"# Failed : {} Not Found.".format(ordered))
+      except:client.sendReplyMessage(msg_id, to,"# Failed : {} Not Found.".format(ordered))
+
+    # GITHUB
+    elif cmd.startswith('github'):
+        textt = removeCmd(text, setKey)
+        texttl = textt.lower()
+        param1 = sender
+        client.findAndAddContactsByMid(param1)
+        results = ' > Github'
+        results += '\n\nUsage : '
+        results += '\n\t{key}Github Profile (Username)'
+        results += '\n\t{key}Github Followers (Username)'
+        results += '\n\t{key}Github Following (Username)'
+        results += '\n\t{key}Github Repositories (Username)'
+        results += '\n\t{key}Github Starred (Username)'
+        results += '\n\t{key}Github Subscriptions (Username)'
+        results += '\n\t{key}Github Events (Username)'
+        if cmd == 'github':
+            client.sendReplyMessage(msg_id, to, results.format_map(SafeDict(key=setKey.title())))
+        elif texttl.startswith('profile '):
+          try:
+            texts = textt[8:]
+            textsl = texts.lower()
+            r = json.loads(requests.get(f"https://api.github.com/users/{ordered}").text)
+            results = f" > Github Profile Info `{ordered.capitalize()}`"
+            results += f"\n\tUsername : {r['login']}"
+            results += f"\n\tID : {int(r['id'])}"
+            results += f"\n\tType : {r['type']}"
+            results += f"\n\tName : {r['name']}"
+            results += f"\n\tEmail : {r['email']}"
+            results += f"\n\tHireable : {r['hireable']}"
+            results += f"\n\tBio : {r['bio']}"
+            results += f"\n\tRepository : {int(r['public_repos'])}"
+            results += f"\n\tFollowers : {int(r['followers'])}"
+            results += f"\n\tFollowing : {int(r['following'])}"
+            results += f"\n\tCreated At : {r['created_at']}"
+            client.sendImageWithURL(to, f"{r['avatar_url']}")
+            client.sendReplyMessage(msg_id,to, results)
+          except Exception as error:client.sendReplyMessage(msg_id, to, f"{error}")
+        elif texttl.startswith('followers '):
+          try:
+            texts = textt[10:]
+            textsl = texts.lower()
+            key = setKey.title()
+            sep = textsl.split(" ")
+            query =  textsl.replace(sep[0]+" ","")
+            cond = query.split("-")
+            search = str(cond[0])
+            req = requests.get(f"https://api.github.com/users/{search}/followers")
+            data = req.text
+            data = json.loads(data)
+            if len(cond) == 1:
+                no = 0
+                result = f"> Github {textsl.capitalize()} Followers // Founds : {len(data)}\n"
+                for reighpuy in data:
+                    no += 1
+                    result += f'\n   ({str(no)}). {reighpuy["login"]}'
+                result += f"\n\nFor Info Using :\n\t`{key}Github Followers {textsl.capitalize()}-[number]`"
+                client.sendReplyMessage(msg_id, to, result)
+            elif len(cond) == 2:
+                try:
+                    num = int(cond[1])
+                    if num <= len(data):
+                        searchs = data[num - 1]
+                        result = f" > Github {search.capitalize()} Followers"
+                        result += f"\n\tUsername : {searchs['login']}"
+                        result += f"\n\tID : {int(searchs['id'])}"
+                        result += f"\n\tType : {searchs['type']}"
+                        client.sendImageWithURL(to, f"{searchs['avatar_url']}")
+                        client.sendReplyMessage(msg_id,to, result)
+                except:client.sendReplyMessage(msg_id,to, "# Failed.")
+          except Exception as error:client.sendReplyMessage(msg_id, to, f"{error}")
+        elif texttl.startswith('following '):
+          try:
+            texts = textt[10:]
+            textsl = texts.lower()
+            key = setKey.title()
+            sep = textsl.split(" ")
+            query =  textsl.replace(sep[0]+" ","")
+            cond = query.split("-")
+            search = str(cond[0])
+            req = requests.get(f"https://api.github.com/users/{search}/following")
+            data = req.text
+            data = json.loads(data)
+            if len(cond) == 1:
+                no = 0
+                result = f"> Github {textsl.capitalize()} Following // Founds : {len(data)}\n"
+                for reighpuy in data:
+                    no += 1
+                    result += f'\n   ({str(no)}). {reighpuy["login"]}'
+                result += f"\n\nFor Info Using :\n\t`{key}Github Following {textsl.capitalize()}-[number]`"
+                client.sendReplyMessage(msg_id, to, result)
+            elif len(cond) == 2:
+                try:
+                    num = int(cond[1])
+                    if num <= len(data):
+                        searchs = data[num - 1]
+                        result = f" > Github {search.capitalize()} Following"
+                        result += f"\n\tUsername : {searchs['login']}"
+                        result += f"\n\tID : {int(searchs['id'])}"
+                        result += f"\n\tType : {searchs['type']}"
+                        client.sendImageWithURL(to, f"{searchs['avatar_url']}")
+                        client.sendReplyMessage(msg_id,to, result)
+                except:client.sendReplyMessage(msg_id,to, "# Failed.")
+          except Exception as error:client.sendReplyMessage(msg_id, to, f"{error}")
+        elif texttl.startswith('repositories '):
+          try:
+            texts = textt[13:]
+            textsl = texts.lower()
+            key = setKey.title()
+            sep = textsl.split(" ")
+            query =  textsl.replace(sep[0]+" ","")
+            cond = query.split("-")
+            search = str(cond[0])
+            req = requests.get(f"https://api.github.com/users/{search}/repos")
+            data = req.text
+            data = json.loads(data)
+            if len(cond) == 1:
+                no = 0
+                result = f"> Github {textsl.capitalize()} Repositories // Founds : {len(data)}\n"
+                for reighpuy in data:
+                    no += 1
+                    result += f'\n   ({str(no)}). {reighpuy["name"]}'
+                result += f"\n\nFor Info Using :\n\t`{key}Github Repositories {textsl.capitalize()}-[number]`"
+                client.sendReplyMessage(msg_id, to, result)
+            elif len(cond) == 2:
+                try:
+                    num = int(cond[1])
+                    if num <= len(data):
+                        search = data[num - 1]
+                        result = f" > Github Repository Info"
+                        result += f"\n\tName : {search['name']}"
+                        result += f"\n\tID : {int(search['id'])}"
+                        result += f"\n\tFull Name : {search['full_name']}"
+                        result += f"\n\tDescription : {search['description']}"
+                        result += f"\n\tPrivate? : {search['private']}"
+                        result += f"\n\tDefault Branch : {search['default_branch']}"
+                        result += f"\n\tSize : {int(search['size'])}"
+                        result += f"\n\tLanguage : {search['language']}"
+                        result += f"\n\tForks Count : {int(search['forks_count'])}"
+                        result += f"\n\tWatchers : {int(search['watchers'])}"
+                        result += f"\n\tLicense : {search['license']}"
+                        result += f"\n\tCreated At : {search['created_at']}"
+                        result += f"\n\tPushed At : {search['pushed_at']}"
+                        result += f"\n\tVisit : https://github.com/{search['full_name']}"
+                        client.sendReplyMessage(msg_id,to, result)
+                except Exception as error:client.sendReplyMessage(msg_id,to, f"{error}")
+          except Exception as error:client.sendReplyMessage(msg_id, to, f"{error}")
+        elif texttl.startswith('starred '):
+          try:
+            texts = textt[8:]
+            textsl = texts.lower()
+            key = setKey.title()
+            sep = textsl.split(" ")
+            query =  textsl.replace(sep[0]+" ","")
+            cond = query.split("-")
+            search = str(cond[0])
+            req = requests.get(f"https://api.github.com/users/{search}/starred")
+            data = req.text
+            data = json.loads(data)
+            if len(cond) == 1:
+                no = 0
+                result = f"> Github {textsl.capitalize()} Starred // Founds : {len(data)}\n"
+                for reighpuy in data:
+                    no += 1
+                    result += f'\n   ({str(no)}). {reighpuy["name"]}'
+                result += f"\n\nFor Info Using :\n\t`{key}Github Starred {textsl.capitalize()}-[number]`"
+                client.sendReplyMessage(msg_id, to, result)
+            elif len(cond) == 2:
+                try:
+                    num = int(cond[1])
+                    if num <= len(data):
+                        searchs = data[num - 1]
+                        result = f" > Github {search.capitalize()} Starred"
+                        result += f"\n\tName : {searchs['name']}"
+                        result += f"\n\tID : {int(searchs['id'])}"
+                        result += f"\n\tFull Name : {searchs['full_name']}"
+                        result += f"\n\tDescription : {searchs['description']}"
+                        result += f"\n\tPrivate? : {searchs['private']}"
+                        result += f"\n\tDefault Branch : {searchs['default_branch']}"
+                        result += f"\n\tSize : {int(searchs['size'])}"
+                        result += f"\n\tLanguage : {searchs['language']}"
+                        result += f"\n\tForks Count : {int(searchs['forks_count'])}"
+                        result += f"\n\tWatchers : {int(searchs['watchers'])}"
+                        result += f"\n\tLicense : {searchs['license']}"
+                        result += f"\n\tCreated At : {searchs['created_at']}"
+                        result += f"\n\tPushed At : {searchs['pushed_at']}"
+                        result += f"\n\tVisit : https://github.com/{searchs['full_name']}"
+                        client.sendReplyMessage(msg_id,to, result)
+                except Exception as error:client.sendReplyMessage(msg_id,to, f"{error}")
+          except Exception as error:client.sendReplyMessage(msg_id, to, f"{error}")
+        elif texttl.startswith('subscriptions '):
+          try:
+            texts = textt[14:]
+            textsl = texts.lower()
+            key = setKey.title()
+            sep = textsl.split(" ")
+            query =  textsl.replace(sep[0]+" ","")
+            cond = query.split("-")
+            search = str(cond[0])
+            req = requests.get(f"https://api.github.com/users/{search}/subscriptions")
+            data = req.text
+            data = json.loads(data)
+            if len(cond) == 1:
+                no = 0
+                result = f"> Github {textsl.capitalize()} Subscriptions // Founds : {len(data)}\n"
+                for reighpuy in data:
+                    no += 1
+                    result += f'\n   ({str(no)}). {reighpuy["name"]}'
+                result += f"\n\nFor Info Using :\n\t`{key}Github Subscriptions {textsl.capitalize()}-[number]`"
+                client.sendReplyMessage(msg_id, to, result)
+            elif len(cond) == 2:
+                try:
+                    num = int(cond[1])
+                    if num <= len(data):
+                        searchs = data[num - 1]
+                        result = f" > Github {search.capitalize()} Subscriptions"
+                        result += f"\n\tName : {searchs['name']}"
+                        result += f"\n\tID : {int(searchs['id'])}"
+                        result += f"\n\tFull Name : {searchs['full_name']}"
+                        result += f"\n\tDescription : {searchs['description']}"
+                        result += f"\n\tPrivate? : {searchs['private']}"
+                        result += f"\n\tDefault Branch : {searchs['default_branch']}"
+                        result += f"\n\tSize : {int(searchs['size'])}"
+                        result += f"\n\tLanguage : {searchs['language']}"
+                        result += f"\n\tForks Count : {int(searchs['forks_count'])}"
+                        result += f"\n\tWatchers : {int(searchs['watchers'])}"
+                        result += f"\n\tLicense : {searchs['license']}"
+                        result += f"\n\tCreated At : {searchs['created_at']}"
+                        result += f"\n\tPushed At : {searchs['pushed_at']}"
+                        result += f"\n\tVisit : https://github.com/{searchs['full_name']}"
+                        client.sendReplyMessage(msg_id,to, result)
+                except Exception as error:client.sendReplyMessage(msg_id,to, f"{error}")
+          except Exception as error:client.sendReplyMessage(msg_id, to, f"{error}")
+        elif texttl.startswith('events '):
+          try:
+            texts = textt[7:]
+            textsl = texts.lower()
+            key = setKey.title()
+            sep = textsl.split(" ")
+            query =  textsl.replace(sep[0]+" ","")
+            cond = query.split("-")
+            search = str(cond[0])
+            req = requests.get(f"https://api.github.com/users/{search}/events")
+            data = req.text
+            data = json.loads(data)
+            if len(cond) == 1:
+                no = 0
+                result = f"> Github {textsl.capitalize()} Events // Founds : {len(data)}\n"
+                for reighpuy in data:
+                    no += 1
+                    result += f'\n   ({str(no)}). {reighpuy["id"]}'
+                result += f"\n\nFor Info Using :\n\t`{key}Github Events {textsl.capitalize()}-[number]`"
+                client.sendReplyMessage(msg_id, to, result)
+            elif len(cond) == 2:
+                try:
+                    num = int(cond[1])
+                    if num <= len(data):
+                        searchs = data[num - 1]
+                        result = f" > Github {search.capitalize()} Events"
+                        result += f"\n\tType : {searchs['type']}"
+                        result += f"\n\tID : {searchs['id']}"
+                        result += f"\n\tRepo : {searchs['repo']['name']}"
+                        result += f"\n\tActor : {searchs['actor']['login']}"
+                        result += f"\n\tPayload Size : {searchs['payload']['size']}"
+                        result += f"\n\tPayload Ref : {searchs['payload']['ref']}"
+                        result += f"\n\tPayload Head : {searchs['payload']['head']}"
+                        result += f"\n\tPayload Before : {searchs['payload']['before']}"
+                        result += f"\n\tPublic? : {searchs['public']}"
+                        result += f"\n\tCreated At : {searchs['created_at']}"
+                        client.sendReplyMessage(msg_id,to, result)
+                except Exception as error:client.sendReplyMessage(msg_id,to, f"{error}")
+          except Exception as error:client.sendReplyMessage(msg_id, to, f"{error}")
 
     # WIKIPEDIA
     elif cmd.startswith('wikipedia'):
@@ -1216,6 +1487,11 @@ def executeCmd(msg, text, txt, cmd, msg_id, receiver, sender, to, setKey):
     elif cmd == "info ytsearch".lower():
         key = setKey.title()
         client.sendReplyMessage(msg_id, to, f"Usage : {key}Ytsearch\n\t Example : {key}Ytsearch kekeyi\n\tWhos can use this Command? : Admin & Non-Admin")
+
+    # Github
+    elif cmd == "info github".lower():
+        key = setKey.title()
+        client.sendReplyMessage(msg_id, to, f"Usage : {key}Github\n\tWhos can use this Command? : Admin & Non-Admin")
 
     # Playstore
     elif cmd == "info playstore".lower():
