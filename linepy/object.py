@@ -14,7 +14,7 @@ class Object(object):
 
     def __init__(self):
         if self.isLogin == True:
-            self.log("[%s] : Login success" % self.profile.displayName)
+            self.log("Login success with name [%s]" % self.profile.displayName)
 
     """Group"""
 
