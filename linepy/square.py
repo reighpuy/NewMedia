@@ -22,14 +22,14 @@ class Square(object):
         try:
             if self.ignoreSquare:
                 self.isSupportSquare = False
-                self.log('Square login ignored')
+                #self.log('Square login ignored')
             else:
                 self.isSupportSquare = True
                 self.squares    = self.getJoinedSquares().squares
                 self.squareObsToken = self.acquireEncryptedAccessToken(2).split('\x1e')[1]
         except:
             self.isSupportSquare = False
-            self.log('Your LINE account doesn\'t support Square')
+            #self.log('Your LINE account doesn\'t support Square')
 
     """Object"""
 
