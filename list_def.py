@@ -9,7 +9,7 @@ bool_dict = {
 }
 
 def restartProgram():
-    print ('[ System Message ] : *Restarting the Program\n______________________________.')
+    print ('[ System Message ] : *Restarting the Program\n______________________________\n')
     python = sys.executable
     os.execl(python, python, *sys.argv)
 
