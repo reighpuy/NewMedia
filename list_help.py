@@ -19,9 +19,10 @@ def helpmessage():
                     " (-). LiffLink" + "\n\t" + \
                     " (-). Myprofile" + "\n\n" + \
                     "> Media" + "\n\t" + \
-                    " (-). Dictionary" + "\n\t" + \
-                    " (-). Utility" + "\n\t" + \
-                    " (-). Avataredit"
+                    " (-). Avataredit" + "\n\t" + \
+                    " (-). Disctionary" + "\n\t" + \
+                    " (-). Memetemplate" + "\n\t" + \
+                    " (-). Utility"
     return helpMessage
 
 def helpdictionary():
