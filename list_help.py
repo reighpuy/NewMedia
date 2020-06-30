@@ -15,13 +15,13 @@ def helpmessage():
         key = ''
     helpMessage ="> General" + "\n" + \
                     "Prefix : ( " + key + " )\n\t" + \
-                    " (1). Author" + "\n\t" + \
-                    " (2). LiffLink" + "\n\t" + \
-                    " (3). Myprofile" + "\n\n" + \
+                    " (-). Author" + "\n\t" + \
+                    " (-). LiffLink" + "\n\t" + \
+                    " (-). Myprofile" + "\n\n" + \
                     "> Media" + "\n\t" + \
-                    " (1). Dictionary" + "\n\t" + \
-                    " (2). Utility" + "\n\t" + \
-                    " (3). Avataredit"
+                    " (-). Dictionary" + "\n\t" + \
+                    " (-). Utility" + "\n\t" + \
+                    " (-). Avataredit"
     return helpMessage
 
 def helpdictionary():
@@ -31,15 +31,15 @@ def helpdictionary():
         key = 'No Prefix'
     helpDictionary ="> Dictionary Command List" + "\n" + \
                     "Prefix : ( " + key + " )\n\t" + \
-                    " (1). Antonym" + "\n\t" + \
-                    " (2). Kbbi" + "\n\t" + \
-                    " (3). Kindof" + "\n\t" + \
-                    " (4). Meanslike" + "\n\t" + \
-                    " (5). Popularnouns" + "\n\t" + \
-                    " (6). Popularadjective" + "\n\t" + \
-                    " (7). Synonym" + "\n\t" + \
-                    " (8). Urbandict" + "\n\t" + \
-                    " (9). Wikipedia"
+                    " (-). Antonym" + "\n\t" + \
+                    " (-). Kbbi" + "\n\t" + \
+                    " (-). Kindof" + "\n\t" + \
+                    " (-). Meanslike" + "\n\t" + \
+                    " (-). Popularnouns" + "\n\t" + \
+                    " (-). Popularadjective" + "\n\t" + \
+                    " (-). Synonym" + "\n\t" + \
+                    " (-). Urbandict" + "\n\t" + \
+                    " (-). Wikipedia"
     return helpDictionary
 
 def helputility():
@@ -49,27 +49,28 @@ def helputility():
         key = 'No Prefix'
     helpUtility ="> Utility Command Lists" + "\n" + \
                     "Prefix : ( " + key + " )\n\t" + \
-                    " (1). Apod" + "\n\t" + \
-                    " (2). Catimage" + "\n\t" + \
-                    " (3). Catfacts" + "\n\t" + \
-                    " (4). Countryinfo" + "\n\t" + \
-                    " (5). CreateCode" + "\n\t" + \
-                    " (6). CreateQr" + "\n\t" + \
-                    " (7). Dogimage" + "\n\t" + \
-                    " (8). Foximage" + "\n\t" + \
-                    " (9). Meme" + "\n\t" + \
-                    " (10). Number" + "\n\t" + \
-                    " (11). Playstore" + "\n\t" + \
-                    " (12). RandomDate" + "\n\t" + \
-                    " (13). RandomQuote" + "\n\t" + \
-                    " (14). RandomYear" + "\n\t" + \
-                    " (15). SearchLyrics" + "\n\t" + \
-                    " (16). Surah" + "\n\t" + \
-                    " (17). TongueTwister" + "\n\t" + \
-                    " (18). Trendtwitter" + "\n\t" + \
-                    " (19). UpcomingConcert" + "\n\t" + \
-                    " (20). Tvchannel" + "\n\t" + \
-                    " (21). Ytsearch"
+                    " (-). Apod" + "\n\t" + \
+                    " (-). Catimage" + "\n\t" + \
+                    " (-). Catfacts" + "\n\t" + \
+                    " (-). Countryinfo" + "\n\t" + \
+                    " (-). CreateCode" + "\n\t" + \
+                    " (-). CreateQr" + "\n\t" + \
+                    " (-). Dogimage" + "\n\t" + \
+                    " (-). Foximage" + "\n\t" + \
+                    " (-). Github" + "\n\t" + \
+                    " (-). Meme" + "\n\t" + \
+                    " (-). Number" + "\n\t" + \
+                    " (-). Playstore" + "\n\t" + \
+                    " (-). RandomDate" + "\n\t" + \
+                    " (-). RandomQuote" + "\n\t" + \
+                    " (-). RandomYear" + "\n\t" + \
+                    " (-). SearchLyrics" + "\n\t" + \
+                    " (-). Surah" + "\n\t" + \
+                    " (-). TongueTwister" + "\n\t" + \
+                    " (-). Trendtwitter" + "\n\t" + \
+                    " (-). UpcomingConcert" + "\n\t" + \
+                    " (-). Tvchannel" + "\n\t" + \
+                    " (-). Ytsearch"
     return helpUtility
 
 def helpavataredit():
@@ -79,19 +80,19 @@ def helpavataredit():
         key = 'No Prefix'
     helpAvataredit ="> AvatarEdits Command List" + "\n" + \
                     "Prefix : ( " + key + " )\n\t" + \
-                    " (1). Adjust" + "\n\t" + \
-                    " (2). Blur" + "\n\t" + \
-                    " (3). Circular" + "\n\t" + \
-                    " (4). Decopacity" + "\n\t" + \
-                    " (5). Filter1" + "\n\t" + \
-                    " (6). Filter2" + "\n\t" + \
-                    " (7). Filter3" + "\n\t" + \
-                    " (8). Grayscale" + "\n\t" + \
-                    " (9). Outline" + "\n\t" + \
-                    " (10). Oilpaint" + "\n\t" + \
-                    " (11). Rotate" + "\n\t" + \
-                    " (12). Recolor" + "\n\t" + \
-                    " (13). Shadow"
+                    " (-). Adjust" + "\n\t" + \
+                    " (-). Blur" + "\n\t" + \
+                    " (-). Circular" + "\n\t" + \
+                    " (-). Decopacity" + "\n\t" + \
+                    " (-). Filter1" + "\n\t" + \
+                    " (-). Filter2" + "\n\t" + \
+                    " (-). Filter3" + "\n\t" + \
+                    " (-). Grayscale" + "\n\t" + \
+                    " (-). Outline" + "\n\t" + \
+                    " (-). Oilpaint" + "\n\t" + \
+                    " (-). Rotate" + "\n\t" + \
+                    " (-). Recolor" + "\n\t" + \
+                    " (-). Shadow"
     return helpAvataredit
 
 def helpmemegen():
