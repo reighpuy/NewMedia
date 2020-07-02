@@ -50,24 +50,31 @@ def helputility():
         key = 'No Prefix'
     helpUtility ="> Utility Command Lists" + "\n" + \
                     "Prefix : ( " + key + " )\n\t" + \
-                    " (-). Apod" + "\n\t" + \
+                    " (-). Astronomy" + "\n\t" + \
                     " (-). Catimage" + "\n\t" + \
                     " (-). Catfacts" + "\n\t" + \
                     " (-). Countryinfo" + "\n\t" + \
                     " (-). CreateCode" + "\n\t" + \
                     " (-). CreateQr" + "\n\t" + \
                     " (-). Dogimage" + "\n\t" + \
+                    " (-). FootballStreams" + "\n\t" + \
                     " (-). Foximage" + "\n\t" + \
                     " (-). Github" + "\n\t" + \
+                    " (-). Hexcolor" + "\n\t" + \
+                    " (-). IPinfo" + "\n\t" + \
+                    " (-). Loker" + "\n\t" + \
                     " (-). Meme" + "\n\t" + \
+                    " (-). Newton" + "\n\t" + \
                     " (-). Number" + "\n\t" + \
                     " (-). Playstore" + "\n\t" + \
+                    " (-). Postcode" + "\n\t" + \
+                    " (-). Quotes" + "\n\t" + \
                     " (-). RandomDate" + "\n\t" + \
-                    " (-). RandomQuote" + "\n\t" + \
                     " (-). RandomYear" + "\n\t" + \
                     " (-). SearchLyrics" + "\n\t" + \
                     " (-). Surah" + "\n\t" + \
                     " (-). TongueTwister" + "\n\t" + \
+                    " (-). Translate" + "\n\t" + \
                     " (-). Trendtwitter" + "\n\t" + \
                     " (-). UpcomingConcert" + "\n\t" + \
                     " (-). Tvchannel" + "\n\t" + \
