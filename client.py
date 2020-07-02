@@ -1580,7 +1580,7 @@ def executeCmd(msg, text, txt, cmd, msg_id, receiver, sender, to, setKey):
             if ordered == "urbandict" or ordered == "Urbandict":
                 client.sendReplyMessage(msg_id,to, urbandict)
             else:pass
-            if ordered == "loker" or ordered == "loker":
+            if ordered == "loker" or ordered == "Loker":
                 client.sendReplyMessage(msg_id,to, loker)
             else:pass
             if ordered == "wikipedia" or ordered == "Wikipedia":
@@ -1625,7 +1625,7 @@ def executeCmd(msg, text, txt, cmd, msg_id, receiver, sender, to, setKey):
             if ordered == "randomyear" or ordered == "Randomyear":
                 client.sendReplyMessage(msg_id,to, randomyear)
             else:pass
-            if ordered == "translate" or ordered == "translate":
+            if ordered == "translate" or ordered == "Translate":
                 client.sendReplyMessage(msg_id,to, translate)
             else:pass
             if ordered == "surah" or ordered == "Surah":
