@@ -19,11 +19,11 @@ $ python3 client.py
  > pip freeze | grep (nama)
 
 # Last Updated / Terakhir Diperbarui : 
- >  13:20 - Tuesday, 31 June 2020.
+ >  20:14 - Thursday, 02 July 2020.
   1. Added RestartPoint : [Visit](https://github.com/reighpuy/NewMedia/blob/5294c5572401c4295f1ff9f2386eb5c1d286692b/setting.json#L12)
-  2. Avatar / Display Picture Quick Edit : [Visit](https://github.com/reighpuy/NewMedia/blob/9d052d0cebb9fb038e176e20ee487525a874a738/client.py#L183)
-  3. Added 8 Dictionary Commands : [Visit](https://github.com/reighpuy/NewMedia/blob/9d052d0cebb9fb038e176e20ee487525a874a738/client.py#L266)
-  4. Added Wikipedia ( Package ) : [Visit](https://github.com/reighpuy/NewMedia/blob/9d052d0cebb9fb038e176e20ee487525a874a738/client.py#L676)
-  5. Added Information of Country ( Package ) : [Visit](https://github.com/reighpuy/NewMedia/blob/9d052d0cebb9fb038e176e20ee487525a874a738/client.py#L812)
-  6. Added Github ( Package ) : [Visit](https://github.com/reighpuy/NewMedia/blob/9d052d0cebb9fb038e176e20ee487525a874a738/client.py#L404)
+  2. Avatar / Display Picture Quick Edit : [Visit](https://github.com/reighpuy/NewMedia/blob/b09927308eae55c7f6209e4019efe13dc57dfee9/client.py#L184)
+  3. Added 8 Dictionary Commands : [Visit](https://github.com/reighpuy/NewMedia/blob/b09927308eae55c7f6209e4019efe13dc57dfee9/client.py#L267)
+  4. Added Wikipedia ( Package ) : [Visit](https://github.com/reighpuy/NewMedia/blob/b09927308eae55c7f6209e4019efe13dc57dfee9/client.py#L404)
+  5. Added Information of Country ( Package ) : [Visit](https://github.com/reighpuy/NewMedia/blob/b09927308eae55c7f6209e4019efe13dc57dfee9/client.py#L816)
+  6. Added Github ( Package ) : [Visit](https://github.com/reighpuy/NewMedia/blob/b09927308eae55c7f6209e4019efe13dc57dfee9/client.py#L543)
  
