@@ -52,6 +52,20 @@ def command(text):
         cmd = text.lower()
     return cmd
 
+#DEFFTEMPLATE
+def sendTemplate(to, data):
+    helloworld = LiffChatContext(to)
+    helloworld = LiffContext(chat=helloworld)
+    view = LiffViewRequest('1654177568-wL8RdxDk', helloworld)
+    token = client.liff.issueLiffView(view)
+    url = 'https://api.line.me/message/v3/share'
+    headers = {
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer %s' % token.accessToken
+    }
+    data = {"messages":[data]}
+    requests.post(url, headers=headers, data=json.dumps(data))
+
 def genImageB64(path):
     with open(path, 'rb') as img_file:
         encode_str = img_file.read()
@@ -89,8 +103,8 @@ def parsingRes(res):
     result = ''
     textt = res.split('\n')
     for text in textt:
-        if True not in [text.startswith(s) for s in ['╭', '├', '│', '╰']]:
-            result += '\n│ ' + text
+        if True not in [text.startswith(s) for s in ['â•­', 'â”œ', 'â”‚', 'â•°']]:
+            result += '\nâ”‚ ' + text
         else:
             if text == textt[0]:
                 result += text
