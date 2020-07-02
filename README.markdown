@@ -18,6 +18,9 @@ $ python3 client.py
 ### Linux :
  > pip freeze | grep (nama)
 
+## Any Question? 
+ > Line : yapuy
+
 # Last Updated / Terakhir Diperbarui : 
  >  20:14 - Thursday, 02 July 2020.
   1. Added RestartPoint : [Visit](https://github.com/reighpuy/NewMedia/blob/5294c5572401c4295f1ff9f2386eb5c1d286692b/setting.json#L12)
