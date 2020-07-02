@@ -1580,6 +1580,9 @@ def executeCmd(msg, text, txt, cmd, msg_id, receiver, sender, to, setKey):
             if ordered == "urbandict" or ordered == "Urbandict":
                 client.sendReplyMessage(msg_id,to, urbandict)
             else:pass
+            if ordered == "loker" or ordered == "loker":
+                client.sendReplyMessage(msg_id,to, loker)
+            else:pass
             if ordered == "wikipedia" or ordered == "Wikipedia":
                 client.sendReplyMessage(msg_id,to, wikipedia)
             else:pass
