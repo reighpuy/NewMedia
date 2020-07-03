@@ -172,12 +172,14 @@ def executeCmd(msg, text, txt, cmd, msg_id, receiver, sender, to, setKey):
     # // Bot Send Profile Of Sender
     if cmd == "me" or cmd == "myprofile":
         paramz = client.getContact(sender)
+        key = setKey.title()
         isi = f"> Profile Info"
-        isi += "\n\tYour Mid : " + paramz.mid
-        isi += "\n\tYour Name : " + paramz.displayName
-        isi += "\n\tYour Bio : " + paramz.statusMessage
+        isi += "\n\tMid : " + paramz.mid
+        isi += "\n\tName : " + paramz.displayName
+        isi += "\n\tBio : " + paramz.statusMessage
+        isi += f"\n\nHey {paramz.displayName}\nIf you want to Edit your DisplayPicture lets type '{key}Help Avataredits'")
+        client.sendImageWithURL(to, f"http://dl.profile.line-cdn.net/{paramz.pictureStatus}")
         client.sendReplyMessage(msg_id,to, isi)
-        #client.sendImageWithURL(to, f"http://dl.profile.line-cdn.net/{paramz.pictureStatus}")
 
                    # // MEDIA STARTING // #
 
