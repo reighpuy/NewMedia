@@ -20,7 +20,7 @@ def helpmessage():
                     " (-). Myprofile" + "\n\n" + \
                     "> Media" + "\n\t" + \
                     " (-). Avataredit" + "\n\t" + \
-                    " (-). Disctionary" + "\n\t" + \
+                    " (-). Dictionary" + "\n\t" + \
                     " (-). Memetemplate" + "\n\t" + \
                     " (-). Utility"
     return helpMessage
