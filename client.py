@@ -171,13 +171,13 @@ def executeCmd(msg, text, txt, cmd, msg_id, receiver, sender, to, setKey):
 
     # // Bot Send Profile Of Sender
     if cmd == "me" or cmd == "myprofile":
-        paramz = client.getContact(sender)
         key = setKey.title()
+        paramz = client.getContact(sender)
         isi = f"> Profile Info"
-        isi += "\n\tMid : " + paramz.mid
         isi += "\n\tName : " + paramz.displayName
         isi += "\n\tBio : " + paramz.statusMessage
-        isi += f"\n\nHey {paramz.displayName}\nIf you want to Edit your DisplayPicture lets type '{key}Help Avataredits'")
+        isi += "\n\tMid : " + paramz.mid
+        isi += f"\n\nFor Edits your Display Picture type '{key}help avataredits'"
         client.sendImageWithURL(to, f"http://dl.profile.line-cdn.net/{paramz.pictureStatus}")
         client.sendReplyMessage(msg_id,to, isi)
 
@@ -1428,6 +1428,43 @@ def executeCmd(msg, text, txt, cmd, msg_id, receiver, sender, to, setKey):
                 except Exception as error:client.sendReplyMessage(msg_id,to, f"> Error : {error}")
         except Exception as error:client.sendReplyMessage(msg_id,to, f"> Error : {error}")
 
+    # Trending Wattpad
+    elif cmd.startswith("trendwattpad"):
+        try:
+            key = setKey.title()
+            sep = msg.text.split(" ")
+            query =  msg.text.replace(sep[0]+" ","")
+            cond = query.split("-")
+            #search = str(cond[0])
+            r = requests.get(f"https://api.haipbis.xyz/trendingwattpad")
+            data = r.text
+            data = json.loads(data)
+            if len(cond) == 1:
+                no = 0
+                result = f"> Wattpad Trending Stories | Founds : {int(len(data))}"
+                for reighpuy in data:
+                    no += 1
+                    result += "\n   ({}). {}".format(str(no), reighpuy["title"])
+                result += f"\nFor Info Using :\n\t`{key}Trendwattpad-[number]`"
+                client.sendReplyMessage(msg_id,to, result)
+            elif len(cond) == 2:
+                try:
+                    num = int(cond[1])
+                    if num <= len(data):
+                        search = data[num - 1]
+                        result = "> Wattpad Trending Stories"
+                        result += f"\n\tTitle : {search['title']}"
+                        result += f"\n\tReads : {search['reads']}"
+                        result += f"\n\tVotes : {search['votes']}"
+                        result += f"\n\tWriter : {search['writer']}"
+                        result += f"\n\tTags : {search['tags']}"
+                        result += f"\n\tSynopsis : {search['sinopsis']}"
+                        result += f"\n\tURL : {search['link']}"
+                        client.sendImageWithURL(to, f"{search['image']}")
+                        client.sendReplyMessage(msg_id,to, result)
+                except Exception as error:client.sendReplyMessage(msg_id,to, f"> Error : {error}")
+        except Exception as error:client.sendReplyMessage(msg_id,to, f"> Error : {error}")
+
     # Upcoming Concert
     elif cmd.startswith("upcomingconcert") or cmd.startswith("upcomingconcerts"):
         try:
@@ -1777,7 +1814,7 @@ def executeOp(op):
 def runningProgram():
     if settings['restartPoint'] is not None:
         try:
-            client.sendMessage(settings['restartPoint'], 'Hey, im Back!')
+            client.sendMessage(settings['restartPoint'], 'Aye Sir, Im Back!')
         except TalkException:
             pass
         settings['restartPoint'] = None
