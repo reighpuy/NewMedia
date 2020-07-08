@@ -19,8 +19,8 @@ $ python3 client.py
  > pip freeze | grep (nama)
 
 ## Any Question? 
- > [Line](https://line.me/ti/p/~yapuy)
- > Discord : Reighpuy#2608
+ # [Line](https://line.me/ti/p/~yapuy)
+ # Discord : Reighpuy#2608
 
 # Last Updated / Terakhir Diperbarui : 
  >  20:14 - Thursday, 02 July 2020.
