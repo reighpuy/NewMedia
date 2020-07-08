@@ -22,7 +22,7 @@ $ python3 client.py
  - [Line](https://line.me/ti/p/~yapuy)
  - Discord : Reighpuy#2608
 
-# Last Updated / Terakhir Diperbarui : 
+# Last Update / Terakhir Diperbaharui : 
  >  20:14 - Thursday, 02 July 2020.
   1. Added RestartPoint : [Visit](https://github.com/reighpuy/NewMedia/blob/5294c5572401c4295f1ff9f2386eb5c1d286692b/setting.json#L12)
   2. Avatar / Display Picture Quick Edit : [Visit](https://github.com/reighpuy/NewMedia/blob/b09927308eae55c7f6209e4019efe13dc57dfee9/client.py#L184)
