@@ -13,10 +13,10 @@ $ python3 client.py
 # For Checkin Version of Module / Untuk Memeriksa Versi Modul
 
 ### Windows :
- > pip freeze | findstr (nama)
+ > pip freeze | findstr (name)
 
 ### Linux :
- > pip freeze | grep (nama)
+ > pip freeze | grep (name)
 
 ## Any Question? 
  - [Line](https://line.me/ti/p/~yapuy)
