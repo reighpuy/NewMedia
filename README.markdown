@@ -18,10 +18,6 @@ $ python3 client.py
 - Linux :
  > pip freeze | grep (name)
 
-## Any Question? 
- - [Line](https://line.me/ti/p/~yapuy)
- - Discord : Reighpuy#2608
-
 # Last Update : 
  >  20:14 - Thursday, 02 July 2020.
   1. Added RestartPoint : [Visit](https://github.com/reighpuy/NewMedia/blob/5294c5572401c4295f1ff9f2386eb5c1d286692b/setting.json#L12)
@@ -31,3 +27,7 @@ $ python3 client.py
   5. Added Information of Country ( Package ) : [Visit](https://github.com/reighpuy/NewMedia/blob/b09927308eae55c7f6209e4019efe13dc57dfee9/client.py#L816)
   6. Added Github ( Package ) : [Visit](https://github.com/reighpuy/NewMedia/blob/b09927308eae55c7f6209e4019efe13dc57dfee9/client.py#L543)
  
+
+## Any Question? 
+ - [Line](https://line.me/ti/p/~yapuy)
+ - Discord : Reighpuy#2608
