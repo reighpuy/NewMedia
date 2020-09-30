@@ -31,3 +31,5 @@ $ python3 client.py
 ## Any Question? 
  - [Line](https://line.me/ti/p/~yapuy)
  - Discord : Reighpuy#2608
+
+[![Run on Repl.it](https://repl.it/badge/github/reighpuy/NewMedia)](https://repl.it/github/reighpuy/NewMedia)
