@@ -10,7 +10,7 @@ $ python -m pip install -r requirements.txt
 $ python3 client.py
 ```
 
-# For Checkin Version of Module :
+# For Checkin' Version of Module :
 
 - Windows :
  > pip freeze | findstr (name)
@@ -21,13 +21,9 @@ $ python3 client.py
 # Last Update : 
  >  20:14 - Thursday, 02 July 2020.
   1. Added RestartPoint : [Visit](https://github.com/reighpuy/NewMedia/blob/5294c5572401c4295f1ff9f2386eb5c1d286692b/setting.json#L12)
-  2. Avatar / Display Picture Quick Edit : [Visit](https://github.com/reighpuy/NewMedia/blob/b09927308eae55c7f6209e4019efe13dc57dfee9/client.py#L184)
-  3. Added 8 Dictionary Commands : [Visit](https://github.com/reighpuy/NewMedia/blob/b09927308eae55c7f6209e4019efe13dc57dfee9/client.py#L267)
-  4. Added Wikipedia ( Package ) : [Visit](https://github.com/reighpuy/NewMedia/blob/b09927308eae55c7f6209e4019efe13dc57dfee9/client.py#L404)
-  5. Added Information of Country ( Package ) : [Visit](https://github.com/reighpuy/NewMedia/blob/b09927308eae55c7f6209e4019efe13dc57dfee9/client.py#L816)
-  6. Added Github ( Package ) : [Visit](https://github.com/reighpuy/NewMedia/blob/b09927308eae55c7f6209e4019efe13dc57dfee9/client.py#L543)
+  2. Fixed Quotes : [Visit](https://github.com/reighpuy/NewMedia/)
  
 
 ## Any Question? 
  - [Line](https://line.me/ti/p/~yapuy)
- - Discord : Reighpuy#2608
+ - [Discord](https://discord.com/users/415466692064313344)

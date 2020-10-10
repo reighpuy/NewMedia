@@ -71,7 +71,7 @@ else:
     sys.exit('[ System Message ] - Login Failed.')
 
 myMid = client.profile.mid
-admin = ["uac8e3eaf1eb2a55770bf10c3b2357c33"] # Insert your Mid
+admin = ["uac8e3eaf1eb2a55770bf10c3b2357c33"] # Insert your Mid here
 programStart = time.time()
 oepoll = OEPoll(client)
 tmp_text = []
@@ -90,6 +90,9 @@ def executeCmd(msg, text, txt, cmd, msg_id, receiver, sender, to, setKey):
       if sender in admin:
         client.sendReplyMessage(msg_id, to, f'Program has been Stopped!\nStopped by {sender.displayName}')
         sys.exit('__Program has been Stopped__')
+      else:
+        paramz = client.getContact(sender)
+        client.sendReplyMessage(msg_id,to, f"Hello {paramz.displayName}.\nYou're not an Admin.")
 
     # // Bot Send a Creator Contact
     if cmd == "author":
@@ -106,6 +109,9 @@ def executeCmd(msg, text, txt, cmd, msg_id, receiver, sender, to, setKey):
         client.sendReplyMessage(msg_id, to, 'Authentication...')
         elapse = time.time() - start
         client.sendReplyMessage(msg_id, to, f'Speed Sending Message {str(elapse)} Seconds')
+      else:
+        paramz = client.getContact(sender)
+        client.sendReplyMessage(msg_id,to, f"Hello {paramz.displayName}.\nYou're not an Admin.")
 
     # // Runtime when Program Started
     elif cmd == "runtime":
@@ -114,6 +120,9 @@ def executeCmd(msg, text, txt, cmd, msg_id, receiver, sender, to, setKey):
         runtime = timeNow - programStart
         runtime = timeChange(runtime)
         client.sendReplyMessage(msg_id, to, f"Bot Running Time {str(runtime)}")
+      else:
+        paramz = client.getContact(sender)
+        client.sendReplyMessage(msg_id,to, f"Hello {paramz.displayName}.\nYou're not an Admin.")
 
     # // Restart the Program
     elif cmd == 'relogin':
@@ -121,6 +130,9 @@ def executeCmd(msg, text, txt, cmd, msg_id, receiver, sender, to, setKey):
         client.sendReplyMessage(msg_id, to, 'Please Wait...')
         settings['restartPoint'] = to
         restartProgram()
+      else:
+        paramz = client.getContact(sender)
+        client.sendReplyMessage(msg_id,to, f"Hello {paramz.displayName}.\nYou're not an Admin.")
 
     # MENU
     elif cmd.startswith('menu') or cmd.startswith('help'):
@@ -177,7 +189,7 @@ def executeCmd(msg, text, txt, cmd, msg_id, receiver, sender, to, setKey):
         isi += "\n\tName : " + paramz.displayName
         isi += "\n\tBio : " + paramz.statusMessage
         isi += "\n\tMid : " + paramz.mid
-        isi += f"\n\nFor Edits your Display Picture type '{key}help avataredits'"
+        isi += f"\n\nType '{key}help avataredits' for Edit your Display Picture."
         client.sendImageWithURL(to, f"http://dl.profile.line-cdn.net/{paramz.pictureStatus}")
         client.sendReplyMessage(msg_id,to, isi)
 
@@ -284,7 +296,7 @@ def executeCmd(msg, text, txt, cmd, msg_id, receiver, sender, to, setKey):
                     no += 1
                     result += f'\n   ({str(no)}). {reighpuy["word"]} [{reighpuy["score"]}]'
                 client.sendReplyMessage(msg_id,to, result+"\n\nNote :\n\tThe Number is a Point of Antonym.")
-        except Exception as error:client.sendReplyMessage(msg_id,to, f"> Error : {error}")
+        except Exception as error:client.sendReplyMessage(msg_id,to, f"> Error. \n{error}")
 
     # SYNONYM
     elif cmd.startswith("synonym "):
@@ -302,7 +314,7 @@ def executeCmd(msg, text, txt, cmd, msg_id, receiver, sender, to, setKey):
                     no += 1
                     result += f'\n   ({str(no)}). {reighpuy["word"]} [{reighpuy["score"]}]'
                 client.sendReplyMessage(msg_id,to, result+"\n\nNote :\n\tThe Number is a Point of Synonym.")
-        except Exception as error:client.sendReplyMessage(msg_id,to, f"> Error : {error}")
+        except Exception as error:client.sendReplyMessage(msg_id,to, f"> Error. \n{error}")
 
     # KINDOF
     elif cmd.startswith("kindof "):
@@ -320,7 +332,7 @@ def executeCmd(msg, text, txt, cmd, msg_id, receiver, sender, to, setKey):
                     no += 1
                     result += f'\n   ({str(no)}). {reighpuy["word"]} [{reighpuy["score"]}]'
                 client.sendReplyMessage(msg_id,to, result+"\n\nNote :\n\tThe Number is a Point of Kindof.")
-        except Exception as error:client.sendReplyMessage(msg_id,to, f"> Error : {error}")
+        except Exception as error:client.sendReplyMessage(msg_id,to, f"> Error. \n{error}")
 
     # POPULAR NOUNS
     elif cmd.startswith("popularnouns "):
@@ -338,7 +350,7 @@ def executeCmd(msg, text, txt, cmd, msg_id, receiver, sender, to, setKey):
                     no += 1
                     result += f'\n   ({str(no)}). {reighpuy["word"]} [{reighpuy["score"]}]'
                 client.sendReplyMessage(msg_id,to, result+"\n\nNote :\n\tThe Number is a Point of Popular Nouns.")
-        except Exception as error:client.sendReplyMessage(msg_id,to, f"> Error : {error}")
+        except Exception as error:client.sendReplyMessage(msg_id,to, f"> Error. \n{error}")
 
     # POPULAR ADJECTIVE
     elif cmd.startswith("populadjective "):
@@ -356,7 +368,7 @@ def executeCmd(msg, text, txt, cmd, msg_id, receiver, sender, to, setKey):
                     no += 1
                     result += f'\n   ({str(no)}). {reighpuy["word"]} [{reighpuy["score"]}]'
                 client.sendReplyMessage(msg_id,to, result+"\n\nNote :\n\tThe Number is a Point of Popular Adjective.")
-        except Exception as error:client.sendReplyMessage(msg_id,to, f"> Error : {error}")
+        except Exception as error:client.sendReplyMessage(msg_id,to, f"> Error. \n{error}")
 
     # KBBI
     elif cmd.startswith("kbbi "):
@@ -365,10 +377,10 @@ def executeCmd(msg, text, txt, cmd, msg_id, receiver, sender, to, setKey):
         data = KBBI(title)
         result = " > KBBI"
         result += f"\n\tJudul : `{str(title).capitalize()}`"
-        result += f"\n{str(data.__str__(contoh=False))}"
+        result += f"\n\n{str(data.__str__(contoh=False))}"
         client.sendReplyMessage(msg_id, to, str(result))
       except Exception as error:
-          client.sendReplyMessage(msg_id,to, f"> Error {error}")
+          client.sendReplyMessage(msg_id,to, f"> Error. \n{error}")
 
     # MEANS LIKE
     elif cmd.startswith("meanslike "):
@@ -385,7 +397,7 @@ def executeCmd(msg, text, txt, cmd, msg_id, receiver, sender, to, setKey):
          results += f"\n\t4) : {str(data[3]['word'])}"
          results += f"\n\t5) : {str(data[4]['word'])}"
          client.sendReplyMessage(msg_id, to, str(results))
-      except Exception as error:client.sendReplyMessage(msg_id,to, f"> Error : {error}")
+      except Exception as error:client.sendReplyMessage(msg_id,to, f"> Error. \n{error}")
 
     # Urban dict
     elif cmd.startswith("urbandict "):
@@ -401,7 +413,7 @@ def executeCmd(msg, text, txt, cmd, msg_id, receiver, sender, to, setKey):
           results += f"\n\tSample : {str(data[0]['example'])}"
           results += f"\n\tURL : {str(data[0]['url'])}"
           client.sendReplyMessage(msg_id,to, results)
-      except Exception as error:client.sendReplyMessage(msg_id,to, f"> Error : {error}")
+      except Exception as error:client.sendReplyMessage(msg_id,to, f"> Error. \n{error}")
 
     # WIKIPEDIA
     elif cmd.startswith('wikipedia'):
@@ -564,8 +576,8 @@ def executeCmd(msg, text, txt, cmd, msg_id, receiver, sender, to, setKey):
           try:
             texts = textt[8:]
             textsl = texts.lower()
-            r = json.loads(requests.get(f"https://api.github.com/users/{ordered}").text)
-            results = f" > Github Profile Info `{ordered.capitalize()}`"
+            r = json.loads(requests.get(f"https://api.github.com/users/{textsl}").text)
+            results = f" > Github Profile Info `{textsl.capitalize()}`"
             results += f"\n\tUsername : {r['login']}"
             results += f"\n\tID : {int(r['id'])}"
             results += f"\n\tType : {r['type']}"
@@ -864,7 +876,7 @@ def executeCmd(msg, text, txt, cmd, msg_id, receiver, sender, to, setKey):
         process = msg.text.split(" ")
         ordered = msg.text.replace(process[0] + " ","")
         data = json.loads(requests.get(f"https://restcountries.eu/rest/v2/alpha/{ordered}").text)
-        client.sendReplyMessage(msg_id,to, f"Capital of `{data['name']}` is `{data['capital']}`")
+        client.sendReplyMessage(msg_id,to, f"`{data['capital']}` is a Capital of `{data['name']}`")
       except Exception as error:client.sendReplyMessage(msg_id,to, f"> Error : {error}")
 
     # Region of Country
@@ -873,7 +885,7 @@ def executeCmd(msg, text, txt, cmd, msg_id, receiver, sender, to, setKey):
         process = msg.text.split(" ")
         ordered = msg.text.replace(process[0] + " ","")
         data = json.loads(requests.get(f"https://restcountries.eu/rest/v2/alpha/{ordered}").text)
-        client.sendReplyMessage(msg_id,to, f"Region of `{data['name']}` is `{data['region']}`")
+        client.sendReplyMessage(msg_id,to, f"`{data['region']}` is a Region of `{data['name']}`")
       except Exception as error:client.sendReplyMessage(msg_id,to, f"> Error : {error}")
 
     # Subregion of Country
@@ -882,7 +894,7 @@ def executeCmd(msg, text, txt, cmd, msg_id, receiver, sender, to, setKey):
         process = msg.text.split(" ")
         ordered = msg.text.replace(process[0] + " ","")
         data = json.loads(requests.get(f"https://restcountries.eu/rest/v2/alpha/{ordered}").text)
-        client.sendReplyMessage(msg_id,to, f"Subregion of `{data['name']}` is `{data['subregion']}`")
+        client.sendReplyMessage(msg_id,to, f"`{data['subregion']}` is a Subregion of `{data['name']}`")
       except Exception as error:client.sendReplyMessage(msg_id,to, f"> Error : {error}")
 
     # Timezones of Country
@@ -891,7 +903,7 @@ def executeCmd(msg, text, txt, cmd, msg_id, receiver, sender, to, setKey):
         process = msg.text.split(" ")
         ordered = msg.text.replace(process[0] + " ","")
         data = json.loads(requests.get(f"https://restcountries.eu/rest/v2/alpha/{ordered}").text)
-        client.sendReplyMessage(msg_id,to, f"Timezone of `{data['name']}` is `{data['timezones']}`")
+        client.sendReplyMessage(msg_id,to, f"`{data['timezones']}` is a Timezone of `{data['name']}`")
       except Exception as error:client.sendReplyMessage(msg_id,to, f"> Error : {error}")
 
     # Native Name of Country
@@ -900,7 +912,7 @@ def executeCmd(msg, text, txt, cmd, msg_id, receiver, sender, to, setKey):
         process = msg.text.split(" ")
         ordered = msg.text.replace(process[0] + " ","")
         data = json.loads(requests.get(f"https://restcountries.eu/rest/v2/alpha/{ordered}").text)
-        client.sendReplyMessage(msg_id,to, f"Nativename of `{data['name']}` is `{data['nativeName']}`")
+        client.sendReplyMessage(msg_id,to, f"`{data['nativeName']}` is a Nativename of `{data['name']}`")
       except Exception as error:client.sendReplyMessage(msg_id,to, f"> Error : {error}")
 
     # Numberic Code of Country
@@ -909,7 +921,7 @@ def executeCmd(msg, text, txt, cmd, msg_id, receiver, sender, to, setKey):
         process = msg.text.split(" ")
         ordered = msg.text.replace(process[0] + " ","")
         data = json.loads(requests.get(f"https://restcountries.eu/rest/v2/alpha/{ordered}").text)
-        client.sendReplyMessage(msg_id,to, f"Numericcode of `{data['name']}` is `{data['numericCode']}`")
+        client.sendReplyMessage(msg_id,to, f"`{data['numericCode']}` is a Numericcode of `{data['name']}`")
       except Exception as error:client.sendReplyMessage(msg_id,to, f"> Error : {error}")
 
     # Population of Country
@@ -918,7 +930,7 @@ def executeCmd(msg, text, txt, cmd, msg_id, receiver, sender, to, setKey):
         process = msg.text.split(" ")
         ordered = msg.text.replace(process[0] + " ","")
         data = json.loads(requests.get(f"https://restcountries.eu/rest/v2/alpha/{ordered}").text)
-        client.sendReplyMessage(msg_id,to, f"Population of `{data['name']}` is `{data['population']}`")
+        client.sendReplyMessage(msg_id,to, f"`{data['population']}` is a Population of `{data['name']}`")
       except Exception as error:client.sendReplyMessage(msg_id,to, f"> Error : {error}")
 
     # Callingcode of Country
@@ -927,7 +939,7 @@ def executeCmd(msg, text, txt, cmd, msg_id, receiver, sender, to, setKey):
         process = msg.text.split(" ")
         ordered = msg.text.replace(process[0] + " ","")
         data = json.loads(requests.get(f"https://restcountries.eu/rest/v2/alpha/{ordered}").text)
-        client.sendReplyMessage(msg_id,to, f"callingcode of `{data['name']}` is `{data['callingCodes']}`")
+        client.sendReplyMessage(msg_id,to, f"`{data['callingCodes']}` is a Callingcode of `{data['name']}`")
       except Exception as error:client.sendReplyMessage(msg_id,to, f"> Error : {error}")
 
     # Currencies Name of Country
@@ -936,7 +948,7 @@ def executeCmd(msg, text, txt, cmd, msg_id, receiver, sender, to, setKey):
         process = msg.text.split(" ")
         ordered = msg.text.replace(process[0] + " ","")
         data = json.loads(requests.get(f"https://restcountries.eu/rest/v2/alpha/{ordered}").text)
-        client.sendReplyMessage(msg_id,to, f"Currencies Name of `{data['name']}` is `{data['currencies'][0]['name']}`")
+        client.sendReplyMessage(msg_id,to, f"`{data['currencies'][0]['name']}` is a Currencies Name of `{data['name']}`")
       except Exception as error:client.sendReplyMessage(msg_id,to, f"> Error : {error}")
 
     # Currencies Code of Country
@@ -945,7 +957,7 @@ def executeCmd(msg, text, txt, cmd, msg_id, receiver, sender, to, setKey):
         process = msg.text.split(" ")
         ordered = msg.text.replace(process[0] + " ","")
         data = json.loads(requests.get(f"https://restcountries.eu/rest/v2/alpha/{ordered}").text)
-        client.sendReplyMessage(msg_id,to, f"Currencies Code of `{data['name']}` is `{data['currencies'][0]['code']}`")
+        client.sendReplyMessage(msg_id,to, f"`{data['currencies'][0]['code']}` is a Currencies Code of `{data['name']}`")
       except Exception as error:client.sendReplyMessage(msg_id,to, f"> Error : {error}")
 
     # Currencies Symbol of Country
@@ -954,7 +966,7 @@ def executeCmd(msg, text, txt, cmd, msg_id, receiver, sender, to, setKey):
         process = msg.text.split(" ")
         ordered = msg.text.replace(process[0] + " ","")
         data = json.loads(requests.get(f"https://restcountries.eu/rest/v2/alpha/{ordered}").text)
-        client.sendReplyMessage(msg_id,to, f"Currencies Symbol of `{data['name']}` is `{data['currencies'][0]['symbol']}`")
+        client.sendReplyMessage(msg_id,to, f"`{data['currencies'][0]['symbol']}` is a Currencies Symbol of `{data['name']}`")
       except Exception as error:client.sendReplyMessage(msg_id,to, f"> Error : {error}")
 
     # Playstore
@@ -1149,8 +1161,6 @@ def executeCmd(msg, text, txt, cmd, msg_id, receiver, sender, to, setKey):
     elif cmd.startswith('quotes'):
         textt = removeCmd(text, setKey)
         texttl = textt.lower()
-        param1 = sender
-        client.findAndAddContactsByMid(param1)
         results = ' > Quotes'
         results += '\n\nUsage : '
         results += '\n\t{key}Quotes Breakingbad'
@@ -1214,14 +1224,6 @@ def executeCmd(msg, text, txt, cmd, msg_id, receiver, sender, to, setKey):
          process = msg.text.split(" ")
          ordered = msg.text.replace(process[0] + " ","")
          client.sendImageWithURL(to, f"https://api.qrserver.com/v1/create-qr-code/?data={ordered}&size=400x400")
-      except Exception as error:client.sendReplyMessage(msg_id,to, f"> Error : {error}")
-
-    # Postcode
-    elif cmd.startswith("postcode "):
-      try:
-         process = msg.text.split(" ")
-         ordered = msg.text.replace(process[0] + " ","")
-         client.sendReplyMessage(msg_id,to, f"http://api.zippopotam.us/us/{int(ordered)}")
       except Exception as error:client.sendReplyMessage(msg_id,to, f"> Error : {error}")
 
     # CREATE CODE IMAGE
@@ -1344,44 +1346,6 @@ def executeCmd(msg, text, txt, cmd, msg_id, receiver, sender, to, setKey):
         result += f"\n\tHosting : {data['hosting']}"
         client.sendReplyMessage(msg_id,to, result)
       except Exception as error:client.sendReplyMessage(msg_id,to, f"> Error : {error}")
-
-    # Domain Info
-    elif cmd.startswith("domaininfo "):
-        try:
-            key = setKey.title()
-            sep = msg.text.split(" ")
-            query =  msg.text.replace(sep[0]+" ","")
-            cond = query.split("-")
-            search = str(cond[0])
-            r = requests.get(f"https://api.domainsdb.info/v1/domains/search?domain={search}&zone=com")
-            data = r.text
-            data = json.loads(data)
-            if len(cond) == 1:
-                no = 0
-                result = f"> {query.capitalize()}"
-                for reighpuy in data["domains"]:
-                    no += 1
-                    result += "\n   ({}). {}".format(str(no), reighpuy["domain"])
-                result += f"\nFor Info Using :\n\t`{key}Domaininfo {query}-[number]`"
-                client.sendReplyMessage(msg_id,to, result)
-            elif len(cond) == 2:
-                try:
-                    num = int(cond[1])
-                    if num <= len(data["domains"]):
-                        search = data["domains"][num - 1]
-                        result = f"> Domain : {search['domain']}"
-                        result += f"\n\tCountry : {search['country']}"
-                        result += f"\n\tActive? : {search['isDead']}"
-                        result += f"\n\tA : {search['A']}"
-                        result += f"\n\tNS : {search['NS']}"
-                        result += f"\n\tCNAME : {search['CNAME']}"
-                        result += f"\n\tMX : {search['MX']}"
-                        result += f"\n\tTXT : {search['TXT']}"
-                        result += f"\n\tCreate Date : {search['create_date']}"
-                        result += f"\n\tUpdate Date : {search['update_date']}"
-                        client.sendReplyMessage(msg_id,to, result)
-                except Exception as error:client.sendReplyMessage(msg_id,to, f"> Error : {error}")
-        except Exception as error:client.sendReplyMessage(msg_id,to, f"> Error : {error}")
 
     # Newton
     elif cmd.startswith("newton"):
@@ -1658,9 +1622,6 @@ def executeCmd(msg, text, txt, cmd, msg_id, receiver, sender, to, setKey):
             if ordered == "randomdate" or ordered == "Randomdate":
                 client.sendReplyMessage(msg_id,to, randomdate)
             else:pass
-            if ordered == "randomquote" or ordered == "Randomquote":
-                client.sendReplyMessage(msg_id,to, randomquote)
-            else:pass
             if ordered == "randomyear" or ordered == "Randomyear":
                 client.sendReplyMessage(msg_id,to, randomyear)
             else:pass
@@ -1669,9 +1630,6 @@ def executeCmd(msg, text, txt, cmd, msg_id, receiver, sender, to, setKey):
             else:pass
             if ordered == "surah" or ordered == "Surah":
                 client.sendReplyMessage(msg_id,to, surah)
-            else:pass
-            if ordered == "ytsearch" or ordered == "Ytsearch":
-                client.sendReplyMessage(msg_id,to, ytsearch)
             else:pass
             if ordered == "github" or ordered == "Github":
                 client.sendReplyMessage(msg_id,to, github)
@@ -1684,9 +1642,6 @@ def executeCmd(msg, text, txt, cmd, msg_id, receiver, sender, to, setKey):
             else:pass
             if ordered == "tvchannel" or ordered == "Tvchannel":
                 client.sendReplyMessage(msg_id,to, tvchannel)
-            else:pass
-            if ordered == "postcode" or ordered == "postcode":
-                client.sendReplyMessage(msg_id,to, postcode)
             else:pass
             if ordered == "foximage" or ordered == "Foximage":
                 client.sendReplyMessage(msg_id,to, foximage)
