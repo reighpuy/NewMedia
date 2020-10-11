@@ -12,7 +12,7 @@ def helpmessage():
     if settings['setKey']['status'] == True:
         key = settings['setKey']['key'].title()
     else:
-        key = ''
+        key = 'No Prefix'
     helpMessage ="> General" + "\n" + \
                     "Prefix : ( " + key + " )\n\t" + \
                     " (-). Author" + "\n\t" + \
