@@ -19,9 +19,10 @@ $ python3 client.py
  > pip freeze | grep (name)
 
 # Last Update : 
- >  03:14 - Sunday, 11 Oct 2020.
+ >  14:55 - Monday, 12 Oct 2020.
   1. Added RestartPoint : [Visit](https://github.com/reighpuy/NewMedia/blob/5294c5572401c4295f1ff9f2386eb5c1d286692b/setting.json#L12)
   2. Fixed Quotes : [Visit](https://github.com/reighpuy/NewMedia/blob/7164bec77e337da5c6f7c317f4831eb6651f41c3/client.py#L1160)
+  3. Ytsearch Removed.
  
 
 ## Any Question? 

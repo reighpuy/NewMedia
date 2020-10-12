@@ -17,6 +17,7 @@ popularnouns = f"Usage : {key}Popularnouns [word]\n\t  Example : {key}Popularnou
 popularadjective = f"Usage : {key}Popularadjective [word]\n\t  Example : {key}Popularadjective Cow\n\tWhos can use this Command? : Admin & Non-Admin"
 synonym = f"Usage : {key}Synonym [word]\n\t  Example : {key}Synonym Cow\n\tWhos can use this Command? : Admin & Non-Admin"
 urbandict = f"Usage : {key}Urbandict [word]\n\tWhos can use this Command? : Admin & Non-Admin"
+celebbirthday = f"Usage : {key}Celebbirthday\n\tWhos can use this Command? : Admin & Non-Admin"
 foximage = f"Usage : {key}Foximage\n\tWhos can use this Command? : Admin & Non-Admin"
 catimage = f"Usage : {key}Catimage\n\tWhos can use this Command? : Admin & Non-Admin"
 dogimage = f"Usage : {key}Dogimage\n\tWhos can use this Command? : Admin & Non-Admin"

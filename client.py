@@ -153,7 +153,7 @@ def executeCmd(msg, text, txt, cmd, msg_id, receiver, sender, to, setKey):
           except:client.sendReplyMessage(msg_id, to, f"# Failed.")
         elif textfix.startswith('utility'):
           try:
-            client.sendReplyMessage(msg_id, to, str(helpUtility)+f"\n\nFor Info Using : \n\t{key}Info [command_name]\n\tExample : {key}Info Apod")
+            client.sendReplyMessage(msg_id, to, str(helpUtility)+f"\n\nFor Info Using : \n\t{key}Info [command_name]\n\tExample : {key}Info Astronomy")
           except:client.sendReplyMessage(msg_id, to, f"# Failed.")
         elif textfix.startswith('avataredit') or textfix.startswith('avataredits'):
           try:
@@ -396,6 +396,22 @@ def executeCmd(msg, text, txt, cmd, msg_id, receiver, sender, to, setKey):
          results += f"\n\t3) : {str(data[2]['word'])}"
          results += f"\n\t4) : {str(data[3]['word'])}"
          results += f"\n\t5) : {str(data[4]['word'])}"
+         client.sendReplyMessage(msg_id, to, str(results))
+      except Exception as error:client.sendReplyMessage(msg_id,to, f"> Error. \n{error}")
+
+    # ZODIAK
+    elif cmd.startswith("zodiak "):
+      try:
+         process = msg.text.split(" ")
+         ordered = msg.text.replace(process[0] + " ","")
+         req = requests.get("http://dolphinapi.herokuapp.com/api/zodiak?zodiak={}".format(str(ordered)))
+         data = req.text
+         data = json.loads(data)
+         results = f" > Zodiak {ordered}"
+         results += f"\n{str(data['result']['forecast'])}"
+         results += f"\n\t- Lucky Number : {str(data['result']['lucky_number'])}"
+         results += f"\n\t- Motivation : {str(data['result']['motivation'])}"
+         results += f"\n\t- Quotes : {str(data['result']['quotes'])}"
          client.sendReplyMessage(msg_id, to, str(results))
       except Exception as error:client.sendReplyMessage(msg_id,to, f"> Error. \n{error}")
 
@@ -1059,14 +1075,14 @@ def executeCmd(msg, text, txt, cmd, msg_id, receiver, sender, to, setKey):
         elif texttl.startswith('num '): # mencari dengan nomor urut sesuai daftar yang ada di https://github.com/reighpuy/super_hero/blob/master/daftar_super_hero.
             texts = textt[4:]
             textsl = texts.lower()
-            r = requests.get("https://www.superheroapi.com/api.php/api_key/{}".format(textsl))
+            r = requests.get("https://www.superheroapi.com/api.php/259395488445252/{}".format(textsl))
             data = r.text
             data = json.loads(data)
             client.sendReplyMessage(msg_id, to, data["name"])
         elif texttl.startswith('powerstats '): # melihat info Power superhero dengan ID sesuai urut nya.
             texts = textt[11:]
             textsl = texts.lower()
-            r = requests.get("https://www.superheroapi.com/api.php/api_key/{}/powerstats".format(textsl))
+            r = requests.get("https://www.superheroapi.com/api.php/259395488445252/{}/powerstats".format(textsl))
             data = r.text
             data = json.loads(data)
             isi = "ID : {}".format(str(data["id"]))
@@ -1081,7 +1097,7 @@ def executeCmd(msg, text, txt, cmd, msg_id, receiver, sender, to, setKey):
         elif texttl.startswith('bio '): # melihat Bio superhero dengan ID sesuai urut nya.
             texts = textt[4:]
             textsl = texts.lower()
-            r = requests.get("https://www.superheroapi.com/api.php/api_key/{}/biography".format(textsl))
+            r = requests.get("https://www.superheroapi.com/api.php/259395488445252/{}/biography".format(textsl))
             data = r.text
             data = json.loads(data)
             isi = "ID : {}".format(str(data["id"]))
@@ -1096,7 +1112,7 @@ def executeCmd(msg, text, txt, cmd, msg_id, receiver, sender, to, setKey):
         elif texttl.startswith('appearance '): # Melihat Appearance superhero dengan ID sesuai urut nya.
             texts = textt[11:]
             textsl = texts.lower()
-            r = requests.get("https://www.superheroapi.com/api.php/api_key/{}/appearance".format(textsl))
+            r = requests.get("https://www.superheroapi.com/api.php/259395488445252/{}/appearance".format(textsl))
             data = r.text
             data = json.loads(data)
             isi = "ID : {}".format(str(data["id"]))
@@ -1111,7 +1127,7 @@ def executeCmd(msg, text, txt, cmd, msg_id, receiver, sender, to, setKey):
         elif texttl.startswith('work '): # Melihat info Work superhero dengan ID sesuai urut nya.
             texts = textt[5:]
             textsl = texts.lower()
-            r = requests.get("https://www.superheroapi.com/api.php/api_key/{}/work".format(textsl))
+            r = requests.get("https://www.superheroapi.com/api.php/259395488445252/{}/work".format(textsl))
             data = r.text
             data = json.loads(data)
             isi = "ID : {}".format(str(data["id"]))
@@ -1122,7 +1138,7 @@ def executeCmd(msg, text, txt, cmd, msg_id, receiver, sender, to, setKey):
         elif texttl.startswith('connections '): # Melihat Connections superhero dengan ID sesuai urut nya.
             texts = textt[12:]
             textsl = texts.lower()
-            r = requests.get("https://www.superheroapi.com/api.php/api_key/{}/connections".format(textsl))
+            r = requests.get("https://www.superheroapi.com/api.php/259395488445252/{}/connections".format(textsl))
             data = r.text
             data = json.loads(data)
             isi = "ID : {}".format(str(data["id"]))
@@ -1133,14 +1149,14 @@ def executeCmd(msg, text, txt, cmd, msg_id, receiver, sender, to, setKey):
         elif texttl.startswith('image '): # Mengirim Gambar superhero dengan ID sesuai urut nya.
             texts = textt[6:]
             textsl = texts.lower()
-            r = requests.get("https://www.superheroapi.com/api.php/api_key/{}/image".format(textsl))
+            r = requests.get("https://www.superheroapi.com/api.php/259395488445252/{}/image".format(textsl))
             data = r.text
             data = json.loads(data)
             client.sendImageWithURL(to, data["url"])
         elif texttl.startswith("search "): # Melihat Info superhero dengan Nama Superhero sesuai urut nya.
             texts = textt[7:]
             textsl = texts.lower()
-            r = requests.get("https://www.superheroapi.com/api.php/api_key/search/{}".format(textsl))
+            r = requests.get("https://www.superheroapi.com/api.php/259395488445252/search/{}".format(textsl))
             data = r.text
             data = json.loads(data)
             isi = "╭───[ Superhero Info ]"
@@ -1538,6 +1554,38 @@ def executeCmd(msg, text, txt, cmd, msg_id, receiver, sender, to, setKey):
                         result += f"\n\tTitle : {search['title']}"
                         result += f"\n\tTweet Count : {search['count']}"
                         result += f"\n\tURL : {search['link']}"
+                        client.sendReplyMessage(msg_id,to, result)
+                except Exception as error:client.sendReplyMessage(msg_id,to, f"> Error : {error}")
+        except Exception as error:client.sendReplyMessage(msg_id,to, f"> Error : {error}")
+
+    # Celebrities Birthday
+    elif cmd.startswith("celebbirthday"):
+        try:
+            key = setKey.title()
+            sep = msg.text.split(" ")
+            query =  msg.text.replace(sep[0]+" ","")
+            cond = query.split("-")
+            #search = str(cond[0])
+            r = requests.get(f"https://api.haipbis.xyz/todaycelebritiesbirthday")
+            data = r.text
+            data = json.loads(data)
+            if len(cond) == 1:
+                no = 0
+                result = "> Celebrities Birthday"
+                for reighpuy in data:
+                    no += 1
+                    result += "\n   ({}). {}".format(str(no), reighpuy["name"])
+                result += f"\nFor Get the Link Using :\n\t`{key}celebbirthday-[number]`"
+                client.sendReplyMessage(msg_id,to, result)
+            elif len(cond) == 2:
+                try:
+                    num = int(cond[1])
+                    if num <= len(data):
+                        search = data[num - 1]
+                        result = "> Celebrities Birthday"
+                        result += f"\n\tName : {search['name']}"
+                        result += f"\n\tAge : {search['age']}"
+                        result += f"\n\tCareer : {search['career']}"
                         client.sendReplyMessage(msg_id,to, result)
                 except Exception as error:client.sendReplyMessage(msg_id,to, f"> Error : {error}")
         except Exception as error:client.sendReplyMessage(msg_id,to, f"> Error : {error}")

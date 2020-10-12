@@ -15,14 +15,14 @@ def helpmessage():
         key = 'No Prefix'
     helpMessage ="> General" + "\n" + \
                     "Prefix : ( " + key + " )\n\t" + \
-                    " (-). Author" + "\n\t" + \
-                    " (-). LiffLink" + "\n\t" + \
-                    " (-). Myprofile" + "\n\n" + \
+                    " (-). 🧔Author" + "\n\t" + \
+                    " (-). 🔗LiffLink" + "\n\t" + \
+                    " (-). 🕶️Myprofile" + "\n\n" + \
                     "> Media" + "\n\t" + \
-                    " (-). Avataredit" + "\n\t" + \
-                    " (-). Dictionary" + "\n\t" + \
-                    " (-). Memetemplate" + "\n\t" + \
-                    " (-). Utility"
+                    " (-). 🖌️Avataredit" + "\n\t" + \
+                    " (-). 📖Dictionary" + "\n\t" + \
+                    " (-). 📝Memetemplate" + "\n\t" + \
+                    " (-). ⚙️Utility"
     return helpMessage
 
 def helpdictionary():
@@ -53,6 +53,7 @@ def helputility():
                     " (-). Astronomy" + "\n\t" + \
                     " (-). Catimage" + "\n\t" + \
                     " (-). Catfacts" + "\n\t" + \
+                    " (-). Celebbirthday" + "\n\t" + \
                     " (-). Countryinfo" + "\n\t" + \
                     " (-). CreateCode" + "\n\t" + \
                     " (-). CreateQr" + "\n\t" + \
